@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text Component should be able to integrate theme fontSize "2xl" within the props "size" 1`] = `
+<Text
+  size="2xl"
+  style={
+    {
+      "fontFamily": "Nunito-Regular",
+      "fontSize": 32,
+      "lineHeight": 41.6,
+    }
+  }
+/>
+`;
+
+exports[`Text Component should be able to integrate theme fontSize "lg" within the props "size" 1`] = `
+<Text
+  size="lg"
+  style={
+    {
+      "fontFamily": "Nunito-Regular",
+      "fontSize": 18,
+      "lineHeight": 23.4,
+    }
+  }
+/>
+`;
+
+exports[`Text Component should be able to integrate theme fontSize "md" within the props "size" 1`] = `
+<Text
+  size="md"
+  style={
+    {
+      "fontFamily": "Nunito-Regular",
+      "fontSize": 16,
+      "lineHeight": 20.8,
+    }
+  }
+/>
+`;
+
+exports[`Text Component should be able to integrate theme fontSize "sm" within the props "size" 1`] = `
+<Text
+  size="sm"
+  style={
+    {
+      "fontFamily": "Nunito-Regular",
+      "fontSize": 14,
+      "lineHeight": 18.2,
+    }
+  }
+/>
+`;
+
+exports[`Text Component should be able to integrate theme fontSize "xl" within the props "size" 1`] = `
+<Text
+  size="xl"
+  style={
+    {
+      "fontFamily": "Nunito-Regular",
+      "fontSize": 24,
+      "lineHeight": 31.2,
+    }
+  }
+/>
+`;
+
+exports[`Text Component should be able to integrate theme fontSize "xs" within the props "size" 1`] = `
+<Text
+  size="xs"
+  style={
+    {
+      "fontFamily": "Nunito-Regular",
+      "fontSize": 12,
+      "lineHeight": 15.6,
+    }
+  }
+/>
+`;
+
+exports[`Text Component should render with props weight = bold 1`] = `
+<Text
+  style={
+    {
+      "fontFamily": "Nunito-Bold",
+      "fontSize": 16,
+      "lineHeight": 20.8,
+    }
+  }
+  weight="bold"
+/>
+`;
+
+exports[`Text Component should render without errors with default style 1`] = `
+<Text
+  style={
+    {
+      "fontFamily": "Nunito-Regular",
+      "fontSize": 16,
+      "lineHeight": 20.8,
+    }
+  }
+/>
+`;

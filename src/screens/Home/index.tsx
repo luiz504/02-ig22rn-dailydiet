@@ -1,27 +1,15 @@
+import { useNavigation } from '@react-navigation/native'
 import { FC } from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
-
-import icon from '~/assets/icon.png'
-import { Dummy } from '~/components/Dummy'
+import { Pressable, View } from 'react-native'
+import { Text } from '~/components/Dummy'
 
 export const Home: FC = () => {
+  const navigator = useNavigation()
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <Image
-        source={icon}
-        style={{ height: 300, objectFit: 'scale-down' }}
-        alt="Hello"
-      />
-      <Dummy />
+    <View style={{ backgroundColor: '#99d9dd' }}>
+      <Pressable onPress={() => navigator.navigate('new-diet')}>
+        <Text>{`<<`}</Text>
+      </Pressable>
     </View>
   )
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
