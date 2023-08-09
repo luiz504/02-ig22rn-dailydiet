@@ -1,7 +1,6 @@
-import { StatusBar } from 'expo-status-bar'
 import * as expoFonts from 'expo-font'
 
-import { render, screen } from '~/utils/test-utils'
+import { render } from '~/utils/test-utils'
 
 import App from './App'
 
@@ -14,20 +13,17 @@ describe('Hello', () => {
     jest.clearAllMocks()
   })
 
-  const appRoutesWrapperID = 'app-routes-wrapper'
   it('should render correctly when fonts is NOT loaded', async () => {
     useFontsSpy.mockReturnValue([false, null])
-    render(<App />)
+    const three = render(<App />).toJSON()
 
-    expect(screen.UNSAFE_queryByType(StatusBar)).toBeNull()
-    expect(screen.queryByTestId(appRoutesWrapperID)).toBeNull()
+    expect(three).toBeNull()
   })
 
   it('should render correctly when fonts is loaded', async () => {
     useFontsSpy.mockReturnValue([true, null])
-    render(<App />)
+    const three = render(<App />).toJSON()
 
-    expect(screen.UNSAFE_getByType(StatusBar)).toBeOnTheScreen()
-    expect(screen.getByTestId(appRoutesWrapperID)).toBeOnTheScreen()
+    expect(three).toBeTruthy()
   })
 })

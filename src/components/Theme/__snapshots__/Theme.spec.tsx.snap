@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Theme Component should render correctly with the a variant assigned: container-style-variant=gray 1`] = `
+{
+  "backgroundColor": "#DDDEDF",
+  "flex": 1,
+}
+`;
+
+exports[`Theme Component should render correctly with the a variant assigned: container-style-variant=green 1`] = `
+{
+  "backgroundColor": "#E5F0DB",
+  "flex": 1,
+}
+`;
+
+exports[`Theme Component should render correctly with the a variant assigned: container-style-variant=red 1`] = `
+{
+  "backgroundColor": "#F4E6E7",
+  "flex": 1,
+}
+`;
+
+exports[`Theme Component should render correctly with the a variant assigned: container-style-variant=white 1`] = `
+{
+  "backgroundColor": "#FAFAFA",
+  "flex": 1,
+}
+`;
+
+exports[`Theme Component should render correctly with the default variant 1`] = `
+{
+  "style": "dark",
+  "translucent": true,
+}
+`;
+
+exports[`Theme Component should render correctly with the default variant: container-style-default 1`] = `
+{
+  "backgroundColor": "#FAFAFA",
+  "flex": 1,
+}
+`;

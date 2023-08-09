@@ -1,5 +1,4 @@
 import { useFonts } from 'expo-font'
-import { StatusBar } from 'expo-status-bar'
 import { useLayoutEffect } from 'react'
 
 import { ThemeProvider } from 'styled-components/native'
@@ -25,7 +24,6 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar style="dark" backgroundColor={theme.colors['gray-400']} />
       <Routes />
     </ThemeProvider>
   )
