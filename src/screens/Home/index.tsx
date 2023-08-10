@@ -4,7 +4,7 @@ import { FC } from 'react'
 import { HeaderUserLogo } from '~/components/HeaderUserLogo'
 
 import { Theme } from '~/components/Theme'
-// import { CardStatistics } from './components/CardStatistics'
+import { CardStatistics } from './components/CardStatistics'
 
 export const Home: FC = () => {
   // const navigator = useNavigation()
@@ -16,10 +16,10 @@ export const Home: FC = () => {
     >
       <HeaderUserLogo />
 
-      {/* <CardStatistics percentage={50} />
-      <CardStatistics percentage={55.19} />
+      <CardStatistics percentage={50} />
+      <CardStatistics percentage={55.11} />
 
-      <CardStatistics percentage={75.1} /> */}
+      <CardStatistics percentage={75.1} />
     </Theme>
   )
 }

@@ -27,6 +27,7 @@
     "backgroundColor": "#FAFAFA",
     "experiments": {
       "tsconfigPaths": true
-    }
+    },
+    "plugins": ["expo-localization"]
   }
 }
