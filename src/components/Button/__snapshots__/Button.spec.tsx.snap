@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Component should render correctly with default props (solid no icon): content-style 1`] = `
+{
+  "alignItems": "center",
+  "flexDirection": "row",
+  "gap": 8,
+}
+`;
+
+exports[`Button Component should render correctly with default props (solid no icon): label-style 1`] = `
+[
+  {
+    "fontFamily": "Nunito-Bold",
+    "fontSize": 14,
+    "lineHeight": 18.2,
+  },
+  {
+    "color": "#FFFFFF",
+  },
+]
+`;
+
+exports[`Button Component should render correctly with default props (solid no icon): normal-btn-style 1`] = `
+[
+  {
+    "alignItems": "center",
+    "alignSelf": "baseline",
+    "borderBottomLeftRadius": 6,
+    "borderBottomRightRadius": 6,
+    "borderBottomWidth": 1.5,
+    "borderLeftWidth": 1.5,
+    "borderRightWidth": 1.5,
+    "borderStyle": "solid",
+    "borderTopLeftRadius": 6,
+    "borderTopRightRadius": 6,
+    "borderTopWidth": 1.5,
+    "justifyContent": "center",
+    "paddingBottom": 14,
+    "paddingLeft": 24,
+    "paddingRight": 24,
+    "paddingTop": 14,
+  },
+  {
+    "backgroundColor": "#333638",
+    "borderColor": "#333638",
+  },
+]
+`;
+
+exports[`Button Component should render correctly with props variant outline: label-style 1`] = `
+[
+  {
+    "fontFamily": "Nunito-Bold",
+    "fontSize": 14,
+    "lineHeight": 18.2,
+  },
+  {
+    "color": "#1B1D1E",
+  },
+]
+`;
+
+exports[`Button Component should render correctly with props variant outline: normal-btn-style 1`] = `
+[
+  {
+    "alignItems": "center",
+    "alignSelf": "baseline",
+    "borderBottomLeftRadius": 6,
+    "borderBottomRightRadius": 6,
+    "borderBottomWidth": 1.5,
+    "borderLeftWidth": 1.5,
+    "borderRightWidth": 1.5,
+    "borderStyle": "solid",
+    "borderTopLeftRadius": 6,
+    "borderTopRightRadius": 6,
+    "borderTopWidth": 1.5,
+    "justifyContent": "center",
+    "paddingBottom": 14,
+    "paddingLeft": 24,
+    "paddingRight": 24,
+    "paddingTop": 14,
+  },
+  {
+    "backgroundColor": "#FAFAFA",
+    "borderColor": "#1B1D1E",
+  },
+]
+`;

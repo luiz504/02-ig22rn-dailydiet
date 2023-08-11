@@ -5,7 +5,10 @@ import { HeaderUserLogo } from '~/components/HeaderUserLogo'
 
 import { Theme } from '~/components/Theme'
 import { CardStatistics } from './components/CardStatistics'
-
+import { SectionNew } from './styles'
+import { Text } from '~/components/Text'
+import { Button } from '~/components/Button'
+import { View } from 'react-native'
 export const Home: FC = () => {
   // const navigator = useNavigation()
   return (
@@ -17,9 +20,24 @@ export const Home: FC = () => {
       <HeaderUserLogo />
 
       <CardStatistics percentage={50} />
-      <CardStatistics percentage={55.11} />
 
-      <CardStatistics percentage={75.1} />
+      <SectionNew>
+        <Text>Meals</Text>
+        <Button label="Btn Solid" />
+      </SectionNew>
+
+      <View style={{ gap: 5, paddingVertical: 5 }}>
+        <Button variant="outline" label="Btn Outline" />
+
+        <Button label="Btn Solid" icon="pen" />
+
+        <Button
+          variant="outline"
+          icon="plus"
+          label="Btn Outline"
+          style={{ alignSelf: 'stretch' }}
+        />
+      </View>
     </Theme>
   )
 }

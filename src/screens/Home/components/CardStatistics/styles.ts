@@ -1,6 +1,6 @@
 import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
-import ArrowUp from '~/assets/arrow-right-up.svg'
+import ArrowUp from '~/assets/icons/arrow-right-up.svg'
 
 export const Container = styled(TouchableOpacity)`
   padding: 20px 16px;
