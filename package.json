@@ -15,6 +15,7 @@
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
     "@types/react-test-renderer": "^18.0.0",
+    "date-fns": "^2.30.0",
     "expo": "~49.0.6",
     "expo-font": "~11.4.0",
     "expo-localization": "~14.3.0",

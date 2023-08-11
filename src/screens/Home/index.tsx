@@ -1,16 +1,39 @@
+import { SectionList } from 'react-native'
 // import { useNavigation } from '@react-navigation/native'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 
-import { HeaderUserLogo } from '~/components/HeaderUserLogo'
+import { HeaderUserLogo } from '~/screens/Home/components/HeaderUserLogo'
 
 import { Theme } from '~/components/Theme'
 import { CardStatistics } from './components/CardStatistics'
-import { SectionNew } from './styles'
 import { Text } from '~/components/Text'
 import { Button } from '~/components/Button'
-import { View } from 'react-native'
+import { CardMeal } from './components/CardMeal'
+
+import { SectionNew } from './styles'
+
+import { mockMeals } from './mockMeals'
+
+import { Meal } from '~/models/Meal'
+
+type MealsSectionList = Array<{ title: string; data: Meal[] }>
+
 export const Home: FC = () => {
   // const navigator = useNavigation()
+
+  const [
+    dailyMealsList,
+    // setDailyMealsList
+  ] = useState<MealsSectionList>(
+    // () => [],
+    Object.entries(mockMeals).map(([key, meals]) => ({
+      title: key,
+      data: meals,
+    })),
+  )
+
+  const isEmptyList = !dailyMealsList?.length
+
   return (
     <Theme
       variant="white"
@@ -23,37 +46,30 @@ export const Home: FC = () => {
 
       <SectionNew>
         <Text>Meals</Text>
-        <Button label="Btn Solid" />
+        <Button icon="plus" label="New meal" />
       </SectionNew>
 
-      <View style={{ gap: 5, paddingVertical: 5 }}>
-        <Button variant="outline" label="Btn Outline" />
-
-        <Button label="Btn Solid" icon="pen" />
-
-        <Button
-          variant="outline"
-          icon="plus"
-          label="Btn Outline"
-          style={{ alignSelf: 'stretch' }}
-        />
-      </View>
+      <SectionList
+        sections={dailyMealsList}
+        keyExtractor={(item) => item.id}
+        style={{ marginBottom: 8 }}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[
+          { gap: 8 },
+          isEmptyList && {
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+        ]}
+        renderSectionHeader={({ section: { title } }) => (
+          <Text size="lg" weight="bold" style={{ marginTop: 24 }}>
+            {title}
+          </Text>
+        )}
+        renderItem={({ item }) => <CardMeal meal={item} activeOpacity={0.65} />}
+        fadingEdgeLength={32}
+      />
     </Theme>
   )
 }
-
-// <Pressable onPress={() => navigator.navigate('new-diet')}>
-//       <Text>New Diet</Text>
-//     </Pressable>
-
-//     <Pressable
-//       onPress={() => navigator.navigate('statistics', { theme: 'green' })}
-//     >
-//       <Text>Go to Statistics Green</Text>
-//     </Pressable>
-
-//     <Pressable
-//       onPress={() => navigator.navigate('statistics', { theme: 'red' })}
-//     >
-//       <Text>Go to Statistics Red</Text>
-//     </Pressable>

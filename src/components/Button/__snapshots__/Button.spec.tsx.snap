@@ -11,6 +11,7 @@ exports[`Button Component should render correctly with default props (solid no i
 exports[`Button Component should render correctly with default props (solid no icon): label-style 1`] = `
 [
   {
+    "color": "#1B1D1E",
     "fontFamily": "Nunito-Bold",
     "fontSize": 14,
     "lineHeight": 18.2,
@@ -25,7 +26,6 @@ exports[`Button Component should render correctly with default props (solid no i
 [
   {
     "alignItems": "center",
-    "alignSelf": "baseline",
     "borderBottomLeftRadius": 6,
     "borderBottomRightRadius": 6,
     "borderBottomWidth": 1.5,
@@ -51,6 +51,7 @@ exports[`Button Component should render correctly with default props (solid no i
 exports[`Button Component should render correctly with props variant outline: label-style 1`] = `
 [
   {
+    "color": "#1B1D1E",
     "fontFamily": "Nunito-Bold",
     "fontSize": 14,
     "lineHeight": 18.2,
@@ -65,7 +66,6 @@ exports[`Button Component should render correctly with props variant outline: no
 [
   {
     "alignItems": "center",
-    "alignSelf": "baseline",
     "borderBottomLeftRadius": 6,
     "borderBottomRightRadius": 6,
     "borderBottomWidth": 1.5,

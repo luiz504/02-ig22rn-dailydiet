@@ -4,7 +4,7 @@ import styled from 'styled-components/native'
 export const Container = styled(TouchableHighlight)`
   padding: 14px 24px;
   border-radius: 6px;
-  align-self: baseline;
+
   justify-content: center;
   align-items: center;
   border-width: 1.5px;

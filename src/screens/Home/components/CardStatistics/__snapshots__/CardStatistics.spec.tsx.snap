@@ -24,6 +24,7 @@ exports[`CardStatistics Component should render correctly with percentage < 75 2
 
 exports[`CardStatistics Component should render correctly with percentage < 75 3`] = `
 {
+  "color": "#333638",
   "fontFamily": "Nunito-Regular",
   "fontSize": 14,
   "lineHeight": 18.2,
@@ -54,6 +55,7 @@ exports[`CardStatistics Component should render correctly with percentage >= 75 
 
 exports[`CardStatistics Component should render correctly with percentage >= 75 3`] = `
 {
+  "color": "#333638",
   "fontFamily": "Nunito-Regular",
   "fontSize": 14,
   "lineHeight": 18.2,

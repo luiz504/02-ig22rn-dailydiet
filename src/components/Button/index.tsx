@@ -63,7 +63,7 @@ export const Button: FC<ButtonProps> = ({
     >
       <Content testID="content">
         {icon && <IconRender type={icon} color={color} />}
-        <Text size={'sm'} weight="bold" style={{ color }} testID="label">
+        <Text size={'sm'} style={{ color }} weight="bold" testID="label">
           {label}
         </Text>
       </Content>

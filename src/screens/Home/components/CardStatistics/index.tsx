@@ -27,7 +27,7 @@ export const CardStatistics: FC<CardStatistics> = ({ percentage, testID }) => {
       <Text weight="bold" size={'2xl'} testID="heading">
         {percentageString}
       </Text>
-      <Text size={'sm'} testID="span">
+      <Text size={'sm'} testID="span" color="gray-700">
         of the meals within the diet
       </Text>
     </Container>

@@ -1,87 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Text Component should be able to integrate theme fontSize "2xl" within the props "size" 1`] = `
-<Text
-  size="2xl"
-  style={
-    {
-      "fontFamily": "Nunito-Regular",
-      "fontSize": 32,
-      "lineHeight": 41.6,
-    }
-  }
-/>
+exports[`Text Component should be able to integrate theme fontSize "2xl" within the props "size": fontSize-options 1`] = `
+{
+  "fontSize": 32,
+  "lineHeight": 41.6,
+}
 `;
 
-exports[`Text Component should be able to integrate theme fontSize "lg" within the props "size" 1`] = `
-<Text
-  size="lg"
-  style={
-    {
-      "fontFamily": "Nunito-Regular",
-      "fontSize": 18,
-      "lineHeight": 23.4,
-    }
-  }
-/>
+exports[`Text Component should be able to integrate theme fontSize "lg" within the props "size": fontSize-options 1`] = `
+{
+  "fontSize": 18,
+  "lineHeight": 23.4,
+}
 `;
 
-exports[`Text Component should be able to integrate theme fontSize "md" within the props "size" 1`] = `
-<Text
-  size="md"
-  style={
-    {
-      "fontFamily": "Nunito-Regular",
-      "fontSize": 16,
-      "lineHeight": 20.8,
-    }
-  }
-/>
+exports[`Text Component should be able to integrate theme fontSize "md" within the props "size": fontSize-options 1`] = `
+{
+  "fontSize": 16,
+  "lineHeight": 20.8,
+}
 `;
 
-exports[`Text Component should be able to integrate theme fontSize "sm" within the props "size" 1`] = `
-<Text
-  size="sm"
-  style={
-    {
-      "fontFamily": "Nunito-Regular",
-      "fontSize": 14,
-      "lineHeight": 18.2,
-    }
-  }
-/>
+exports[`Text Component should be able to integrate theme fontSize "sm" within the props "size": fontSize-options 1`] = `
+{
+  "fontSize": 14,
+  "lineHeight": 18.2,
+}
 `;
 
-exports[`Text Component should be able to integrate theme fontSize "xl" within the props "size" 1`] = `
-<Text
-  size="xl"
-  style={
-    {
-      "fontFamily": "Nunito-Regular",
-      "fontSize": 24,
-      "lineHeight": 31.2,
-    }
-  }
-/>
+exports[`Text Component should be able to integrate theme fontSize "xl" within the props "size": fontSize-options 1`] = `
+{
+  "fontSize": 24,
+  "lineHeight": 31.2,
+}
 `;
 
-exports[`Text Component should be able to integrate theme fontSize "xs" within the props "size" 1`] = `
-<Text
-  size="xs"
-  style={
-    {
-      "fontFamily": "Nunito-Regular",
-      "fontSize": 12,
-      "lineHeight": 15.6,
-    }
-  }
-/>
+exports[`Text Component should be able to integrate theme fontSize "xs" within the props "size": fontSize-options 1`] = `
+{
+  "fontSize": 12,
+  "lineHeight": 15.6,
+}
 `;
+
+exports[`Text Component should render correctly the Text with the color assigned = gray-100: color-options 1`] = `"#FAFAFA"`;
+
+exports[`Text Component should render correctly the Text with the color assigned = gray-200: color-options 1`] = `"#EFF0F0"`;
+
+exports[`Text Component should render correctly the Text with the color assigned = gray-300: color-options 1`] = `"#DDDEDF"`;
+
+exports[`Text Component should render correctly the Text with the color assigned = gray-400: color-options 1`] = `"#B9BBBC"`;
+
+exports[`Text Component should render correctly the Text with the color assigned = gray-600: color-options 1`] = `"#5C6265"`;
+
+exports[`Text Component should render correctly the Text with the color assigned = gray-700: color-options 1`] = `"#333638"`;
+
+exports[`Text Component should render correctly the Text with the color assigned = gray-800: color-options 1`] = `"#1B1D1E"`;
+
+exports[`Text Component should render correctly the Text with the color assigned = green-100: color-options 1`] = `"#E5F0DB"`;
+
+exports[`Text Component should render correctly the Text with the color assigned = green-500: color-options 1`] = `"#CBE4B4"`;
+
+exports[`Text Component should render correctly the Text with the color assigned = green-900: color-options 1`] = `"#639339"`;
+
+exports[`Text Component should render correctly the Text with the color assigned = red-100: color-options 1`] = `"#F4E6E7"`;
+
+exports[`Text Component should render correctly the Text with the color assigned = red-500: color-options 1`] = `"#F3BABD"`;
+
+exports[`Text Component should render correctly the Text with the color assigned = red-900: color-options 1`] = `"#BF3B44"`;
+
+exports[`Text Component should render correctly the Text with the color assigned = white: color-options 1`] = `"#FFFFFF"`;
 
 exports[`Text Component should render with props weight = bold 1`] = `
 <Text
   style={
     {
+      "color": "#1B1D1E",
       "fontFamily": "Nunito-Bold",
       "fontSize": 16,
       "lineHeight": 20.8,
@@ -95,6 +88,7 @@ exports[`Text Component should render without errors with default style 1`] = `
 <Text
   style={
     {
+      "color": "#1B1D1E",
       "fontFamily": "Nunito-Regular",
       "fontSize": 16,
       "lineHeight": 20.8,
