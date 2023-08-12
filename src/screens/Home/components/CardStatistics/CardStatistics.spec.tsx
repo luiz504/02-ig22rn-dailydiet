@@ -1,4 +1,4 @@
-import { render, screen } from '~/utils/test-utils'
+import { fireEvent, render, screen } from '~/utils/test-utils'
 import { CardStatistics } from '.'
 import { mockStatistics } from '../../mockMeals'
 
@@ -50,5 +50,26 @@ describe('CardStatistics Component', () => {
     expect(arrowIconElement.props.color).toMatchSnapshot()
 
     expect(spanElement.props.style).toMatchSnapshot()
+  })
+
+  it('should open and close the Statistics Modal when click in on Card Statistics', async () => {
+    render(<CardStatistics statistics={mockStatistics} testID={containerID} />)
+    const containerElement = screen.getByTestId(containerID)
+    expect(screen.getByTestId('modal-statistics')).not.toBeVisible()
+
+    // act
+    fireEvent.press(containerElement)
+
+    // Asset
+    expect(screen.getByTestId('modal-statistics')).toBeVisible()
+
+    const closeBtnElement = screen.getByTestId('close-modal-btn')
+    expect(closeBtnElement).toBeOnTheScreen()
+
+    // act
+    fireEvent.press(closeBtnElement)
+
+    // Asset
+    expect(screen.getByTestId('modal-statistics')).not.toBeVisible()
   })
 })

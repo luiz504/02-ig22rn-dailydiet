@@ -34,7 +34,7 @@ export const ModalContent: FC<ModalContentProps> = ({
   return (
     <Container style={{ backgroundColor }}>
       <Header>
-        <ArrowBtn onPress={onRequestToClose}>
+        <ArrowBtn onPress={onRequestToClose} testID="close-modal-btn">
           <ArrowLeft color={arrowColor} />
         </ArrowBtn>
 

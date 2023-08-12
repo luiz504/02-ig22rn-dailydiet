@@ -3,9 +3,9 @@ export declare global {
     interface RootParamList {
       home: undefined;
       "new-diet": undefined;
-      statistics: {
-        theme: "red" | "green";
-      };
+      // statistics: {
+      //   theme: "red" | "green";
+      // };
     }
   }
 }

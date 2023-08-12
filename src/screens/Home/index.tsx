@@ -1,5 +1,6 @@
-import { SectionList } from 'react-native'
 import { FC, useState } from 'react'
+import { SectionList } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import { HeaderUserLogo } from '~/screens/Home/components/HeaderUserLogo'
 
@@ -27,6 +28,8 @@ export const Home: FC = () => {
 
   const isEmptyList = !dailyMealsList?.length
 
+  const navigator = useNavigation()
+
   return (
     <Theme
       variant="white"
@@ -39,7 +42,11 @@ export const Home: FC = () => {
 
       <SectionNew>
         <Text>Meals</Text>
-        <Button icon="plus" label="New meal" />
+        <Button
+          icon="plus"
+          label="New meal"
+          onPress={() => navigator.navigate('new-diet')}
+        />
       </SectionNew>
 
       <SectionList

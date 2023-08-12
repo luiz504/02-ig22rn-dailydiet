@@ -46,6 +46,7 @@ export const CardStatistics: FC<CardStatistics> = ({ statistics, testID }) => {
         statusBarTranslucent
         animationType="slide"
         onRequestClose={onRequestToClose}
+        testID="modal-statistics"
       >
         <ModalContent
           statistics={statistics}

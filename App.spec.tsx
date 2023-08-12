@@ -1,6 +1,6 @@
 import * as expoFonts from 'expo-font'
 
-import { render } from '~/utils/test-utils'
+import { renderThemed } from '~/utils/test-utils'
 
 import App from './App'
 
@@ -15,14 +15,14 @@ describe('Hello', () => {
 
   it('should render correctly when fonts is NOT loaded', async () => {
     useFontsSpy.mockReturnValue([false, null])
-    const three = render(<App />).toJSON()
+    const three = renderThemed(<App />).toJSON()
 
     expect(three).toBeNull()
   })
 
   it('should render correctly when fonts is loaded', async () => {
     useFontsSpy.mockReturnValue([true, null])
-    const three = render(<App />).toJSON()
+    const three = renderThemed(<App />).toJSON()
 
     expect(three).toBeTruthy()
   })
