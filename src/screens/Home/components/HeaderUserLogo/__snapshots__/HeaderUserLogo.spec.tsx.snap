@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderUserLogo Component should render correctly: container-styles 1`] = `
+{
+  "alignItems": "center",
+  "flexDirection": "row",
+  "justifyContent": "space-between",
+  "paddingBottom": 24,
+  "paddingLeft": 0,
+  "paddingRight": 0,
+  "paddingTop": 24,
+}
+`;
+
+exports[`HeaderUserLogo Component should render correctly: profile-styles 1`] = `
+{
+  "borderBottomLeftRadius": 20,
+  "borderBottomRightRadius": 20,
+  "borderColor": "#333638",
+  "borderStyle": "solid",
+  "borderTopLeftRadius": 20,
+  "borderTopRightRadius": 20,
+  "borderWidth": 2,
+  "height": 40,
+  "width": 40,
+}
+`;

@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardMeal Component should render correctly with meal props property "inDiet" as false: status-style 1`] = `
+[
+  {
+    "borderBottomLeftRadius": 9999,
+    "borderBottomRightRadius": 9999,
+    "borderTopLeftRadius": 9999,
+    "borderTopRightRadius": 9999,
+    "height": 14,
+    "width": 14,
+  },
+  {
+    "backgroundColor": "#F3BABD",
+  },
+]
+`;
+
+exports[`CardMeal Component should render correctly with meal props property "inDiet" as true: container-style 1`] = `
+{
+  "alignItems": "center",
+  "borderBottomColor": "#DDDEDF",
+  "borderBottomLeftRadius": 6,
+  "borderBottomRightRadius": 6,
+  "borderBottomWidth": 1.5,
+  "borderLeftColor": "#DDDEDF",
+  "borderLeftWidth": 1.5,
+  "borderRightColor": "#DDDEDF",
+  "borderRightWidth": 1.5,
+  "borderTopColor": "#DDDEDF",
+  "borderTopLeftRadius": 6,
+  "borderTopRightRadius": 6,
+  "borderTopWidth": 1.5,
+  "flexDirection": "row",
+  "gap": 12,
+  "opacity": 1,
+  "paddingBottom": 14,
+  "paddingLeft": 12,
+  "paddingRight": 16,
+  "paddingTop": 14,
+}
+`;
+
+exports[`CardMeal Component should render correctly with meal props property "inDiet" as true: hour-text-style 1`] = `
+{
+  "color": "#1B1D1E",
+  "fontFamily": "Nunito-Bold",
+  "fontSize": 12,
+  "lineHeight": 15.6,
+}
+`;
+
+exports[`CardMeal Component should render correctly with meal props property "inDiet" as true: hr-style 1`] = `
+{
+  "backgroundColor": "#B9BBBC",
+  "height": "100%",
+  "width": 1,
+}
+`;
+
+exports[`CardMeal Component should render correctly with meal props property "inDiet" as true: name-text-style 1`] = `
+[
+  {
+    "color": "#333638",
+    "fontFamily": "Nunito-Regular",
+    "fontSize": 16,
+    "lineHeight": 20.8,
+  },
+  {
+    "flex": 1,
+  },
+]
+`;
+
+exports[`CardMeal Component should render correctly with meal props property "inDiet" as true: status-style 1`] = `
+[
+  {
+    "borderBottomLeftRadius": 9999,
+    "borderBottomRightRadius": 9999,
+    "borderTopLeftRadius": 9999,
+    "borderTopRightRadius": 9999,
+    "height": 14,
+    "width": 14,
+  },
+  {
+    "backgroundColor": "#CBE4B4",
+  },
+]
+`;

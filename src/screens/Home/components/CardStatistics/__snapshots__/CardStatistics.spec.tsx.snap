@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardStatistics Component should render correctly with percentage < 75 1`] = `
+{
+  "alignItems": "center",
+  "backgroundColor": "#F4E6E7",
+  "borderBottomLeftRadius": 8,
+  "borderBottomRightRadius": 8,
+  "borderTopLeftRadius": 8,
+  "borderTopRightRadius": 8,
+  "justifyContent": "center",
+  "marginBottom": 40,
+  "marginTop": 12,
+  "opacity": 1,
+  "paddingBottom": 20,
+  "paddingLeft": 16,
+  "paddingRight": 16,
+  "paddingTop": 20,
+  "position": "relative",
+}
+`;
+
+exports[`CardStatistics Component should render correctly with percentage < 75 2`] = `"#BF3B44"`;
+
+exports[`CardStatistics Component should render correctly with percentage < 75 3`] = `
+{
+  "color": "#333638",
+  "fontFamily": "Nunito-Regular",
+  "fontSize": 14,
+  "lineHeight": 18.2,
+}
+`;
+
+exports[`CardStatistics Component should render correctly with percentage >= 75 1`] = `
+{
+  "alignItems": "center",
+  "backgroundColor": "#E5F0DB",
+  "borderBottomLeftRadius": 8,
+  "borderBottomRightRadius": 8,
+  "borderTopLeftRadius": 8,
+  "borderTopRightRadius": 8,
+  "justifyContent": "center",
+  "marginBottom": 40,
+  "marginTop": 12,
+  "opacity": 1,
+  "paddingBottom": 20,
+  "paddingLeft": 16,
+  "paddingRight": 16,
+  "paddingTop": 20,
+  "position": "relative",
+}
+`;
+
+exports[`CardStatistics Component should render correctly with percentage >= 75 2`] = `"#639339"`;
+
+exports[`CardStatistics Component should render correctly with percentage >= 75 3`] = `
+{
+  "color": "#333638",
+  "fontFamily": "Nunito-Regular",
+  "fontSize": 14,
+  "lineHeight": 18.2,
+}
+`;
