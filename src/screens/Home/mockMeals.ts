@@ -1,3 +1,4 @@
+import { Statistics } from '~/models/Statistics'
 import { DailyMeals } from './types'
 
 export const mockMeals: DailyMeals = {
@@ -105,4 +106,12 @@ export const mockMeals: DailyMeals = {
       inDiet: true,
     },
   ],
+}
+
+export const mockStatistics: Statistics = {
+  bestInDietSequence: 22,
+  inDietEntries: 99,
+  outDietEntries: 10,
+  totalEntries: 99 + 10,
+  inDietPercentage: (99 / (99 + 10)) * 100,
 }

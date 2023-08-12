@@ -1,5 +1,4 @@
 import { SectionList } from 'react-native'
-// import { useNavigation } from '@react-navigation/native'
 import { FC, useState } from 'react'
 
 import { HeaderUserLogo } from '~/screens/Home/components/HeaderUserLogo'
@@ -12,20 +11,14 @@ import { CardMeal } from './components/CardMeal'
 
 import { SectionNew } from './styles'
 
-import { mockMeals } from './mockMeals'
+import { mockMeals, mockStatistics } from './mockMeals'
 
 import { Meal } from '~/models/Meal'
 
 type MealsSectionList = Array<{ title: string; data: Meal[] }>
 
 export const Home: FC = () => {
-  // const navigator = useNavigation()
-
-  const [
-    dailyMealsList,
-    // setDailyMealsList
-  ] = useState<MealsSectionList>(
-    // () => [],
+  const [dailyMealsList] = useState<MealsSectionList>(
     Object.entries(mockMeals).map(([key, meals]) => ({
       title: key,
       data: meals,
@@ -42,7 +35,7 @@ export const Home: FC = () => {
     >
       <HeaderUserLogo />
 
-      <CardStatistics percentage={50} />
+      <CardStatistics statistics={mockStatistics} />
 
       <SectionNew>
         <Text>Meals</Text>

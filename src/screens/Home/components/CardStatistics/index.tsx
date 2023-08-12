@@ -1,35 +1,57 @@
-import { FC } from 'react'
-import { TouchableOpacityProps } from 'react-native'
-import { useTheme } from 'styled-components/native'
+import { FC, useState } from 'react'
+import { Modal, TouchableOpacityProps } from 'react-native'
+
+import { useStatisticsCommons } from './common'
 
 import { Text } from '~/components/Text'
+import { ModalContent } from './ModalContent'
 
 import { Container, ArrowIcon } from './styles'
-import { percentageFormatter } from '~/utils/percentageFormatter'
 
+import { Statistics } from '~/models/Statistics'
 interface CardStatistics extends TouchableOpacityProps {
-  percentage: number
+  statistics: Statistics
 }
 
-export const CardStatistics: FC<CardStatistics> = ({ percentage, testID }) => {
-  const theme = useTheme()
-  const arrowColor =
-    percentage > 75 ? theme.colors['green-900'] : theme.colors['red-900']
+export const CardStatistics: FC<CardStatistics> = ({ statistics, testID }) => {
+  const {
+    percentageString,
+    theme: { arrowColor, backgroundColor },
+  } = useStatisticsCommons(statistics)
 
-  const backgroundColor =
-    percentage > 75 ? theme.colors['green-100'] : theme.colors['red-100']
-
-  const percentageString = percentageFormatter(percentage)
+  //* Modal Handlers
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const onRequestToClose = () => {
+    setIsModalOpen(false)
+  }
 
   return (
-    <Container style={{ backgroundColor }} testID={testID}>
-      <ArrowIcon color={arrowColor} testID="arrow-icon" />
-      <Text weight="bold" size={'2xl'} testID="heading">
-        {percentageString}
-      </Text>
-      <Text size={'sm'} testID="span" color="gray-700">
-        of the meals within the diet
-      </Text>
-    </Container>
+    <>
+      <Container
+        style={{ backgroundColor }}
+        testID={testID}
+        onPress={() => setIsModalOpen(true)}
+      >
+        <ArrowIcon color={arrowColor} testID="arrow-icon" />
+        <Text weight="bold" size={'2xl'} testID="heading">
+          {percentageString}
+        </Text>
+        <Text size={'sm'} testID="span" color="gray-700">
+          of the meals within the diet
+        </Text>
+      </Container>
+
+      <Modal
+        visible={isModalOpen}
+        statusBarTranslucent
+        animationType="slide"
+        onRequestClose={onRequestToClose}
+      >
+        <ModalContent
+          statistics={statistics}
+          onRequestToClose={onRequestToClose}
+        />
+      </Modal>
+    </>
   )
 }

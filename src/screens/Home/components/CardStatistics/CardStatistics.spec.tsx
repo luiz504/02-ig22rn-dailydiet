@@ -1,5 +1,6 @@
 import { render, screen } from '~/utils/test-utils'
 import { CardStatistics } from '.'
+import { mockStatistics } from '../../mockMeals'
 
 describe('CardStatistics Component', () => {
   const containerID = 'card'
@@ -14,7 +15,12 @@ describe('CardStatistics Component', () => {
   }
 
   it('should render correctly with percentage >= 75', () => {
-    render(<CardStatistics percentage={75.4} testID={containerID} />)
+    render(
+      <CardStatistics
+        statistics={{ ...mockStatistics, inDietPercentage: 75.4 }}
+        testID={containerID}
+      />,
+    )
     const { containerElement, headingElement, arrowIconElement, spanElement } =
       elements()
 
@@ -28,7 +34,12 @@ describe('CardStatistics Component', () => {
   })
 
   it('should render correctly with percentage < 75', () => {
-    render(<CardStatistics percentage={40.111} testID={containerID} />)
+    render(
+      <CardStatistics
+        statistics={{ ...mockStatistics, inDietPercentage: 40.111 }}
+        testID={containerID}
+      />,
+    )
     const { containerElement, headingElement, arrowIconElement, spanElement } =
       elements()
 
