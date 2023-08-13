@@ -1,7 +1,7 @@
-import { FC } from 'react'
-import ArrowLeft from '~/assets/icons/arrow-left.svg'
+import { FC, useEffect } from 'react'
+import { useNavigation, useRoute } from '@react-navigation/native'
 
-import { useStatisticsCommons } from '../common'
+import ArrowLeft from '~/assets/icons/arrow-left.svg'
 
 import { Text } from '~/components/Text'
 
@@ -15,15 +15,21 @@ import {
 } from './styles'
 
 import { Statistics } from '~/models/Statistics'
+import { useStatisticsCommons } from '../Home/components/CardStatistics/common'
+import {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated'
 
-type ModalContentProps = {
+type RouteParams = {
   statistics: Statistics
-  onRequestToClose: () => void
 }
-export const ModalContent: FC<ModalContentProps> = ({
-  statistics,
-  onRequestToClose,
-}) => {
+export const StatisticsScreen: FC = () => {
+  const { statistics } = useRoute().params as RouteParams
+  const navigator = useNavigation()
+
   const { bestInDietSequence, totalEntries, inDietEntries, outDietEntries } =
     statistics
   const {
@@ -31,10 +37,30 @@ export const ModalContent: FC<ModalContentProps> = ({
     percentageString,
   } = useStatisticsCommons(statistics)
 
+  const animatedValue = useSharedValue(0)
+
+  const animatedDetailsSectionStyle = useAnimatedStyle(() => {
+    return {
+      opacity: animatedValue.value,
+    }
+  })
+
+  useEffect(() => {
+    // Trigger the animation when the component mounts
+    animatedValue.value = withTiming(1, {
+      duration: 500,
+      easing: Easing.linear,
+    })
+  }, [animatedValue]) //
+
+  const handleNavigate = () => {
+    navigator.navigate('home')
+  }
+
   return (
     <Container style={{ backgroundColor }}>
-      <Header>
-        <ArrowBtn onPress={onRequestToClose} testID="close-modal-btn">
+      <Header sharedTransitionTag="tag">
+        <ArrowBtn onPress={handleNavigate} testID="btn-return">
           <ArrowLeft color={arrowColor} />
         </ArrowBtn>
 
@@ -47,7 +73,7 @@ export const ModalContent: FC<ModalContentProps> = ({
         </Text>
       </Header>
 
-      <DetailsSection>
+      <DetailsSection style={animatedDetailsSectionStyle}>
         <Text size="sm" weight="bold" style={{ marginBottom: 11 }}>
           General Statistics
         </Text>

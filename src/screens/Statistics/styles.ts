@@ -1,11 +1,12 @@
 import { TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import styled, { css } from 'styled-components/native'
+import Animated from 'react-native-reanimated'
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
 `
-export const Header = styled.View`
+export const Header = styled(Animated.View)`
   align-items: center;
   padding: 34px 24px;
   position: relative;
@@ -19,7 +20,7 @@ export const ArrowBtn = styled(TouchableOpacity)`
   top: 10px;
   left: 18px;
 `
-export const DetailsSection = styled.View`
+export const DetailsSection = styled(Animated.View)`
   flex: 1;
   background-color: ${({ theme }) => theme.colors['gray-100']};
   border-radius: 20px;
