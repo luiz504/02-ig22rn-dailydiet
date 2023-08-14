@@ -23,6 +23,13 @@ const customRender: typeof render = (ui, options) =>
 const renderThemed: typeof render = (ui, options) =>
   render(ui, { wrapper: ThemedWrapper, ...options })
 
+const splitBorderColor = (borderColor: string) => ({
+  borderTopColor: borderColor,
+  borderRightColor: borderColor,
+  borderBottomColor: borderColor,
+  borderLeftColor: borderColor,
+})
+
 export * from '@testing-library/react-native'
 
-export { customRender as render, renderThemed }
+export { customRender as render, renderThemed, splitBorderColor }

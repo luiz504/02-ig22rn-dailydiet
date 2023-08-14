@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input Component should render correctly: input-not-focused 1`] = `
+{
+  "borderBottomColor": "#DDDEDF",
+  "borderBottomLeftRadius": 6,
+  "borderBottomRightRadius": 6,
+  "borderBottomWidth": 1.5,
+  "borderLeftColor": "#DDDEDF",
+  "borderLeftWidth": 1.5,
+  "borderRightColor": "#DDDEDF",
+  "borderRightWidth": 1.5,
+  "borderTopColor": "#DDDEDF",
+  "borderTopLeftRadius": 6,
+  "borderTopRightRadius": 6,
+  "borderTopWidth": 1.5,
+  "color": "#1B1D1E",
+  "fontFamily": "Nunito-Regular",
+  "fontSize": 16,
+  "paddingBottom": 14,
+  "paddingLeft": 14,
+  "paddingRight": 14,
+  "paddingTop": 14,
+}
+`;
