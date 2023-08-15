@@ -1,9 +1,10 @@
 import { FC, ReactNode } from 'react'
-import { PressableProps } from 'react-native'
+import { TouchableHighlightProps } from 'react-native'
+import { useTheme } from 'styled-components/native'
 
-import { Container, Variant, Label, Dot } from './styles'
+import { Container, Variant, Content, Label, Dot } from './styles'
 
-interface ButtonProps extends PressableProps {
+interface ButtonProps extends TouchableHighlightProps {
   variant: Variant
   isSelected: boolean
   children: ReactNode
@@ -14,14 +15,19 @@ export const Button: FC<ButtonProps> = ({
   children,
   ...rest
 }) => {
+  const theme = useTheme()
+  const underLayTheme: Record<Variant, string> = {
+    green: theme.colors['green-500'],
+    red: theme.colors['red-500'],
+  }
   return (
     <Container
       variant={variant}
       isSelected={isSelected}
       {...rest}
-      android_ripple={{ color: 'rgba(0,0,0, 0.06)' }}
+      underlayColor={underLayTheme[variant]}
     >
-      {children}
+      <Content testID="btn-content-wrapper">{children}</Content>
     </Container>
   )
 }

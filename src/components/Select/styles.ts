@@ -1,7 +1,7 @@
 import styled, { css, DefaultTheme } from 'styled-components/native'
 
 import { Text } from '../Text'
-import { Pressable } from 'react-native'
+import { TouchableHighlight } from 'react-native'
 
 export type Variant = 'green' | 'red'
 
@@ -24,21 +24,24 @@ const buttonsVariantStyle: Record<
   `,
 }
 
-export const Container = styled(Pressable)<ContainerProps>`
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
+export const Container = styled(TouchableHighlight)<ContainerProps>`
   padding: 16px;
-  gap: 8px;
+
   border-radius: 8px;
   border-width: 1.5px;
+  overflow: hidden;
 
   border-color: ${({ theme }) => theme.colors['gray-200']};
   background-color: ${({ theme }) => theme.colors['gray-200']};
 
   ${({ variant, theme, isSelected }) =>
     isSelected && buttonsVariantStyle[variant](theme)}
+`
+export const Content = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 `
 
 type DotProps = {

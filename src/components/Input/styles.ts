@@ -1,11 +1,11 @@
 import { css, styled } from 'styled-components/native'
-
+import { TextInput as TextInputNative } from 'react-native'
 type TextInputProps = {
   isFocused: boolean
 }
 
-export const TextInput = styled.TextInput<TextInputProps>`
-  padding: 14px;
+export const StyledInput = styled(TextInputNative)<TextInputProps>`
+  padding: 11px 14px;
   border-radius: 6px;
   border-width: 1.5px;
 

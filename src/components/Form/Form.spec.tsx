@@ -38,6 +38,6 @@ describe('Form Component', () => {
     const text = 'Some Text'
     render(<Form.Label testID={rowID}>{text} </Form.Label>)
     const { size, weight } = screen.getByText(text).props
-    expect({ size, weight }).toEqual({ size: 'lg', weight: 'bold' })
+    expect({ size, weight }).toEqual({ size: 'md', weight: 'bold' })
   })
 })

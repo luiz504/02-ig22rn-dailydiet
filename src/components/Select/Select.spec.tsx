@@ -30,7 +30,11 @@ describe('Select Component', () => {
   })
 
   describe('Button Component', () => {
-    it('should render correctly the variant green', () => {
+    const getBtnProps = () =>
+      screen.UNSAFE_getByProps({
+        testID: 'button',
+      }).props
+    it('should render correctly the variant green', async () => {
       let selected = false
 
       render(
@@ -38,17 +42,22 @@ describe('Select Component', () => {
           <Select.Label>Text</Select.Label>
         </Select.Button>,
       )
-
       const btnElement = screen.getByTestId('button')
 
-      const { variant, isSelected } = btnElement.props
+      const render1 = getBtnProps()
 
-      expect({ variant, isSelected }).toEqual({
+      expect({
+        variant: render1.variant,
+        isSelected: render1.isSelected,
+      }).toEqual({
         variant: 'green',
         isSelected: false,
       })
 
       expect(btnElement.props.style).toMatchSnapshot('btn-green-not-selected')
+      expect(
+        screen.getByTestId('btn-content-wrapper').props.style,
+      ).toMatchSnapshot('btn-content-wrapper')
 
       selected = true
 
@@ -58,7 +67,9 @@ describe('Select Component', () => {
         </Select.Button>,
       )
 
-      expect(btnElement.props.isSelected).toBe(true)
+      const render2 = getBtnProps()
+
+      expect(render2.isSelected).toBe(true)
       expect(btnElement.props.style).toMatchSnapshot('btn-green-selected')
     })
 
@@ -73,9 +84,12 @@ describe('Select Component', () => {
 
       const btnElement = screen.getByTestId('button')
 
-      const { variant, isSelected } = btnElement.props
+      const render1 = getBtnProps()
 
-      expect({ variant, isSelected }).toEqual({
+      expect({
+        variant: render1.variant,
+        isSelected: render1.isSelected,
+      }).toEqual({
         variant: 'red',
         isSelected: false,
       })
@@ -90,7 +104,9 @@ describe('Select Component', () => {
         </Select.Button>,
       )
 
-      expect(btnElement.props.isSelected).toBe(true)
+      const render2 = getBtnProps()
+
+      expect(render2.isSelected).toBe(true)
       expect(btnElement.props.style).toMatchSnapshot('btn-red-selected')
     })
   })

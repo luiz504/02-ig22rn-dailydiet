@@ -22,7 +22,7 @@ const Row = styled.View<RowProps>`
 `
 
 export const Label = styled(Text).attrs(() => ({
-  size: 'lg',
+  size: 'md',
   weight: 'bold',
 }))``
 

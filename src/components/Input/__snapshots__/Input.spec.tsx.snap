@@ -17,9 +17,9 @@ exports[`Input Component should render correctly: input-not-focused 1`] = `
   "color": "#1B1D1E",
   "fontFamily": "Nunito-Regular",
   "fontSize": 16,
-  "paddingBottom": 14,
+  "paddingBottom": 11,
   "paddingLeft": 14,
   "paddingRight": 14,
-  "paddingTop": 14,
+  "paddingTop": 11,
 }
 `;
