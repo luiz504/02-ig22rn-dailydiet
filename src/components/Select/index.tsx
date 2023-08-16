@@ -20,6 +20,7 @@ export const Button: FC<ButtonProps> = ({
     green: theme.colors['green-500'],
     red: theme.colors['red-500'],
   }
+
   return (
     <Container
       variant={variant}

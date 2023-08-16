@@ -1,10 +1,10 @@
 import { FC, useMemo, useRef, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { TextInput } from 'react-native'
-import { DateTimePickerAndroid } from '@react-native-community/datetimepicker'
+import DateTimePicker from 'react-native-modal-datetime-picker'
 import { subMonths } from 'date-fns'
 
-import { formatDate, formatTime, userConfig } from '~/utils/dataTimeFormatter'
+import { formatDate, formatTime } from '~/utils/dataTimeFormatter'
 
 import { HeaderShort } from '~/components/HeaderShort'
 import { Theme } from '~/components/Theme'
@@ -29,18 +29,12 @@ export const NewDiet: FC = () => {
   const [isInDiet, setIsInDiet] = useState<boolean | undefined>()
 
   const [dateTime, setDateTime] = useState<Date>(new Date())
-
-  const handleDateTimePickerModal = (mode: 'date' | 'time') => {
-    blurInputs()
-    DateTimePickerAndroid.open({
-      mode,
-      value: dateTime,
-      minimumDate: subMonths(new Date(), 1),
-      maximumDate: new Date(),
-      is24Hour: userConfig.uses24hoursClock,
-      onChange: ({ type }, value) =>
-        type === 'set' && setDateTime(value as Date),
-    })
+  const [isOpenDatePicker, setIsOpenDatePicker] = useState<
+    'date' | 'time' | undefined
+  >()
+  const handleDateTimePickerModal = (mode?: 'date' | 'time') => {
+    mode && blurInputs()
+    setIsOpenDatePicker(mode)
   }
 
   const dateTimeString = useMemo(() => {
@@ -66,26 +60,42 @@ export const NewDiet: FC = () => {
           <Form.Col>
             <Form.Label>Name</Form.Label>
 
-            <Input ref={inputNameRef} />
+            <Input ref={inputNameRef} testID="input-name" />
           </Form.Col>
 
           <Form.Col>
             <Form.Label>Description</Form.Label>
 
             <Input
+              ref={inputDescriptionRef}
               multiline
               numberOfLines={5}
               textAlignVertical="top"
-              ref={inputDescriptionRef}
+              testID="input-description"
             />
           </Form.Col>
 
           <Form.Row variant="lg">
+            <DateTimePicker
+              isVisible={!!isOpenDatePicker}
+              mode={isOpenDatePicker}
+              onCancel={handleDateTimePickerModal}
+              onConfirm={(a) => {
+                handleDateTimePickerModal()
+                setDateTime(a)
+              }}
+              minimumDate={subMonths(new Date(), 1)}
+              maximumDate={new Date()}
+              date={dateTime}
+              testID="date-time-picker"
+            />
+
             <Form.Col style={{ flex: 1 }}>
               <Form.Label>Date</Form.Label>
 
               <DatePicker.Button
                 onPress={() => handleDateTimePickerModal('date')}
+                testID="btn-date"
               >
                 <DatePicker.Label numberOfLines={1}>
                   {dateTimeString.date}
@@ -98,6 +108,7 @@ export const NewDiet: FC = () => {
 
               <DatePicker.Button
                 onPress={() => handleDateTimePickerModal('time')}
+                testID="btn-hour"
               >
                 <DatePicker.Label numberOfLines={1}>
                   {dateTimeString.time}
@@ -115,6 +126,7 @@ export const NewDiet: FC = () => {
                 isSelected={!!isInDiet}
                 style={{ flex: 1 }}
                 onPress={() => setIsInDiet(true)}
+                testID={'btn-in-diet'}
               >
                 <Select.Dot variant="green" />
                 <Select.Label>Yes</Select.Label>
@@ -125,6 +137,7 @@ export const NewDiet: FC = () => {
                 isSelected={isInDiet === false}
                 style={{ flex: 1 }}
                 onPress={() => setIsInDiet(false)}
+                testID={'btn-out-diet'}
               >
                 <Select.Dot variant="red" />
                 <Select.Label>No</Select.Label>
