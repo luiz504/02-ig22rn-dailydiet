@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AlertDelete Component should render correctly: btn-confirm 1`] = `
+[
+  {
+    "alignItems": "center",
+    "borderBottomLeftRadius": 6,
+    "borderBottomRightRadius": 6,
+    "borderBottomWidth": 1.5,
+    "borderLeftWidth": 1.5,
+    "borderRightWidth": 1.5,
+    "borderStyle": "solid",
+    "borderTopLeftRadius": 6,
+    "borderTopRightRadius": 6,
+    "borderTopWidth": 1.5,
+    "justifyContent": "center",
+    "paddingBottom": 14,
+    "paddingLeft": 24,
+    "paddingRight": 24,
+    "paddingTop": 14,
+  },
+  {
+    "backgroundColor": "#333638",
+    "borderColor": "#333638",
+    "flex": 1,
+  },
+]
+`;
+
+exports[`AlertDelete Component should render correctly: btn-dismiss 1`] = `
+[
+  {
+    "alignItems": "center",
+    "borderBottomLeftRadius": 6,
+    "borderBottomRightRadius": 6,
+    "borderBottomWidth": 1.5,
+    "borderLeftWidth": 1.5,
+    "borderRightWidth": 1.5,
+    "borderStyle": "solid",
+    "borderTopLeftRadius": 6,
+    "borderTopRightRadius": 6,
+    "borderTopWidth": 1.5,
+    "justifyContent": "center",
+    "paddingBottom": 14,
+    "paddingLeft": 24,
+    "paddingRight": 24,
+    "paddingTop": 14,
+  },
+  {
+    "backgroundColor": "#FAFAFA",
+    "borderColor": "#1B1D1E",
+    "flex": 1,
+  },
+]
+`;
+
+exports[`AlertDelete Component should render correctly: btns-row 1`] = `
+{
+  "flexDirection": "row",
+  "gap": 12,
+}
+`;
+
+exports[`AlertDelete Component should render correctly: content 1`] = `
+{
+  "alignItems": "center",
+  "alignSelf": "stretch",
+  "backgroundColor": "#FAFAFA",
+  "borderBottomLeftRadius": 8,
+  "borderBottomRightRadius": 8,
+  "borderTopLeftRadius": 8,
+  "borderTopRightRadius": 8,
+  "gap": 32,
+  "paddingBottom": 24,
+  "paddingLeft": 24,
+  "paddingRight": 21,
+  "paddingTop": 40,
+}
+`;
+
+exports[`AlertDelete Component should render correctly: heading 1`] = `
+{
+  "style": {
+    "color": "#1B1D1E",
+    "fontFamily": "Nunito-Regular",
+    "fontSize": 18,
+    "lineHeight": 23.4,
+  },
+  "text": "Do you really want to delete the meal record?",
+}
+`;
+
+exports[`AlertDelete Component should render correctly: overlay 1`] = `
+{
+  "alignItems": "center",
+  "backgroundColor": "rgba(0,0,0,0.06)",
+  "flexBasis": 0,
+  "flexGrow": 1,
+  "flexShrink": 1,
+  "justifyContent": "center",
+  "paddingBottom": 24,
+  "paddingLeft": 24,
+  "paddingRight": 24,
+  "paddingTop": 24,
+}
+`;

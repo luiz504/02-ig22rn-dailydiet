@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContentSection Component should render correctly 1`] = `
+{
+  "backgroundColor": "#FAFAFA",
+  "borderBottomLeftRadius": 0,
+  "borderBottomRightRadius": 0,
+  "borderTopLeftRadius": 20,
+  "borderTopRightRadius": 20,
+  "flexBasis": 0,
+  "flexGrow": 1,
+  "flexShrink": 1,
+  "paddingBottom": 16,
+  "paddingLeft": 24,
+  "paddingRight": 24,
+  "paddingTop": 40,
+}
+`;

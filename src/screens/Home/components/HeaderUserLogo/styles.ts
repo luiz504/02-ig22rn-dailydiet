@@ -9,6 +9,12 @@ export const Container = styled.View`
 export const ProfileWrapper = styled.View`
   height: 40px;
   width: 40px;
+  overflow: hidden;
   border-radius: 20px;
   border: 2px solid ${({ theme }) => theme.colors['gray-700']};
+`
+export const ProfileImage = styled.Image`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useCallback, useState } from 'react'
 import { SectionList } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
@@ -30,6 +30,12 @@ export const Home: FC = () => {
 
   const navigator = useNavigation()
 
+  const handleClickCardMeal = useCallback(
+    (meal: Meal) => {
+      navigator.navigate('meal', { meal })
+    },
+    [navigator],
+  )
   return (
     <Theme
       variant="white"
@@ -42,10 +48,12 @@ export const Home: FC = () => {
 
       <SectionNew>
         <Text>Meals</Text>
+
         <Button
           icon="plus"
           label="New meal"
-          onPress={() => navigator.navigate('new-diet')}
+          onPress={() => navigator.navigate('new-meal')}
+          testID="btn-new-meal"
         />
       </SectionNew>
 
@@ -67,7 +75,14 @@ export const Home: FC = () => {
             {title}
           </Text>
         )}
-        renderItem={({ item }) => <CardMeal meal={item} activeOpacity={0.65} />}
+        renderItem={({ item }) => (
+          <CardMeal
+            meal={item}
+            activeOpacity={0.65}
+            onPress={() => handleClickCardMeal(item)}
+            testID="card-meal"
+          />
+        )}
         fadingEdgeLength={32}
       />
     </Theme>

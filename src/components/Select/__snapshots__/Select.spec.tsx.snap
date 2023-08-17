@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select Component Button Component should render correctly the variant green: btn-content-wrapper 1`] = `
+{
+  "alignItems": "center",
+  "flexDirection": "row",
+  "gap": 8,
+  "justifyContent": "center",
+}
+`;
+
+exports[`Select Component Button Component should render correctly the variant green: btn-green-not-selected 1`] = `
+{
+  "backgroundColor": "#EFF0F0",
+  "borderBottomColor": "#EFF0F0",
+  "borderBottomLeftRadius": 8,
+  "borderBottomRightRadius": 8,
+  "borderBottomWidth": 1.5,
+  "borderLeftColor": "#EFF0F0",
+  "borderLeftWidth": 1.5,
+  "borderRightColor": "#EFF0F0",
+  "borderRightWidth": 1.5,
+  "borderTopColor": "#EFF0F0",
+  "borderTopLeftRadius": 8,
+  "borderTopRightRadius": 8,
+  "borderTopWidth": 1.5,
+  "overflow": "hidden",
+  "paddingBottom": 16,
+  "paddingLeft": 16,
+  "paddingRight": 16,
+  "paddingTop": 16,
+}
+`;
+
+exports[`Select Component Button Component should render correctly the variant green: btn-green-selected 1`] = `
+{
+  "backgroundColor": "#E5F0DB",
+  "borderBottomColor": "#639339",
+  "borderBottomLeftRadius": 8,
+  "borderBottomRightRadius": 8,
+  "borderBottomWidth": 1.5,
+  "borderLeftColor": "#639339",
+  "borderLeftWidth": 1.5,
+  "borderRightColor": "#639339",
+  "borderRightWidth": 1.5,
+  "borderTopColor": "#639339",
+  "borderTopLeftRadius": 8,
+  "borderTopRightRadius": 8,
+  "borderTopWidth": 1.5,
+  "overflow": "hidden",
+  "paddingBottom": 16,
+  "paddingLeft": 16,
+  "paddingRight": 16,
+  "paddingTop": 16,
+}
+`;
+
+exports[`Select Component Button Component should render correctly the variant red: btn-red-not-selected 1`] = `
+{
+  "backgroundColor": "#EFF0F0",
+  "borderBottomColor": "#EFF0F0",
+  "borderBottomLeftRadius": 8,
+  "borderBottomRightRadius": 8,
+  "borderBottomWidth": 1.5,
+  "borderLeftColor": "#EFF0F0",
+  "borderLeftWidth": 1.5,
+  "borderRightColor": "#EFF0F0",
+  "borderRightWidth": 1.5,
+  "borderTopColor": "#EFF0F0",
+  "borderTopLeftRadius": 8,
+  "borderTopRightRadius": 8,
+  "borderTopWidth": 1.5,
+  "overflow": "hidden",
+  "paddingBottom": 16,
+  "paddingLeft": 16,
+  "paddingRight": 16,
+  "paddingTop": 16,
+}
+`;
+
+exports[`Select Component Button Component should render correctly the variant red: btn-red-selected 1`] = `
+{
+  "backgroundColor": "#F4E6E7",
+  "borderBottomColor": "#BF3B44",
+  "borderBottomLeftRadius": 8,
+  "borderBottomRightRadius": 8,
+  "borderBottomWidth": 1.5,
+  "borderLeftColor": "#BF3B44",
+  "borderLeftWidth": 1.5,
+  "borderRightColor": "#BF3B44",
+  "borderRightWidth": 1.5,
+  "borderTopColor": "#BF3B44",
+  "borderTopLeftRadius": 8,
+  "borderTopRightRadius": 8,
+  "borderTopWidth": 1.5,
+  "overflow": "hidden",
+  "paddingBottom": 16,
+  "paddingLeft": 16,
+  "paddingRight": 16,
+  "paddingTop": 16,
+}
+`;
+
+exports[`Select Component Dot Component should render the Dot Component variant green: dot-green 1`] = `
+{
+  "backgroundColor": "#639339",
+  "borderBottomLeftRadius": 99999,
+  "borderBottomRightRadius": 99999,
+  "borderTopLeftRadius": 99999,
+  "borderTopRightRadius": 99999,
+  "height": 8,
+  "width": 8,
+}
+`;
+
+exports[`Select Component Dot Component should render the Dot Component variant red: dot-red 1`] = `
+{
+  "backgroundColor": "#BF3B44",
+  "borderBottomLeftRadius": 99999,
+  "borderBottomRightRadius": 99999,
+  "borderTopLeftRadius": 99999,
+  "borderTopRightRadius": 99999,
+  "height": 8,
+  "width": 8,
+}
+`;
+
+exports[`Select Component Label Component should render the Label Component: label 1`] = `
+{
+  "size": "sm",
+  "weight": "bold",
+}
+`;

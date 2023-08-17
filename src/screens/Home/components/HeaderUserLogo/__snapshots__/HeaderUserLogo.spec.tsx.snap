@@ -22,6 +22,7 @@ exports[`HeaderUserLogo Component should render correctly: profile-styles 1`] = 
   "borderTopRightRadius": 20,
   "borderWidth": 2,
   "height": 40,
+  "overflow": "hidden",
   "width": 40,
 }
 `;
