@@ -22,4 +22,26 @@ function formatTime(time: Date) {
   }).format(time)
 }
 
-export { userConfig, formatDate, formatTime }
+function formatDateAndTime(date: Date | string) {
+  const formattedFullDate = new Date(date).toLocaleDateString(
+    userConfig.languageTag,
+    {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: 'numeric',
+      minute: 'numeric',
+    },
+  )
+
+  if (userConfig.languageTag.startsWith('en')) {
+    return formattedFullDate.replace(',', ' at')
+  }
+
+  if (userConfig.languageTag.startsWith('pt')) {
+    return formattedFullDate.replace(',', ' às')
+  }
+
+  return formattedFullDate
+}
+export { userConfig, formatDate, formatTime, formatDateAndTime }

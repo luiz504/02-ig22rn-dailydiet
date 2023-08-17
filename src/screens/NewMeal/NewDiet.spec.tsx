@@ -2,12 +2,12 @@ import { fireEvent, render, screen, splitBorderColor } from '~/utils/test-utils'
 
 import * as React from 'react'
 
-import { NewDiet } from '.'
+import { NewMeal } from '.'
 import { theme } from '~/styles'
 
-describe('NewDiet Component', () => {
+describe('NewMeal Screen', () => {
   it('should render Correctly', () => {
-    render(<NewDiet />)
+    render(<NewMeal />)
   })
   // const inputNameID = 'input-name'
   // const inputDescriptionID = 'input-description'
@@ -17,7 +17,7 @@ describe('NewDiet Component', () => {
   // const dateTimePicker = 'date-time-picker'
 
   it('should be able to select between InDiet and OutDiet', async () => {
-    render(<NewDiet />)
+    render(<NewMeal />)
 
     const inDietBtn = screen.getByTestId(btnInDietID)
     const outDietBtn = screen.getByTestId(btnOutDietID)
@@ -56,7 +56,7 @@ describe('NewDiet Component', () => {
 
   // it('should be able to pick a Date and Hour', () => {})
   // it('should blur inputs when open DatePicker', async () => {
-  //   render(<NewDiet />)
+  //   render(<NewMeal />)
 
   //   const nameInput = screen.getByTestId(inputNameID)
   //   const descriptionInput = screen.getByTestId(inputDescriptionID)

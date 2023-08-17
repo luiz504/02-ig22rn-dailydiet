@@ -15,7 +15,7 @@ import { Select } from '~/components/Select'
 import { Button } from '~/components/Button'
 import { DatePicker } from '~/components/DatePicker'
 
-export const NewDiet: FC = () => {
+export const EditMeal: FC = () => {
   const inputNameRef = useRef<TextInput>(null)
   const inputDescriptionRef = useRef<TextInput>(null)
 
@@ -51,8 +51,8 @@ export const NewDiet: FC = () => {
   return (
     <Theme variant={'gray'}>
       <HeaderShort
-        title="New meal"
-        onReturnRequest={() => navigator.navigate('home')}
+        title="Edit Meal"
+        onReturnRequest={() => navigator.goBack()}
       />
 
       <ContentSection>

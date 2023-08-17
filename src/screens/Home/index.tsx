@@ -30,6 +30,9 @@ export const Home: FC = () => {
 
   const navigator = useNavigation()
 
+  const handleClickCardMeal = (meal: Meal) => {
+    navigator.navigate('meal', { meal })
+  }
   return (
     <Theme
       variant="white"
@@ -45,7 +48,7 @@ export const Home: FC = () => {
         <Button
           icon="plus"
           label="New meal"
-          onPress={() => navigator.navigate('new-diet')}
+          onPress={() => navigator.navigate('new-meal')}
         />
       </SectionNew>
 
@@ -67,7 +70,13 @@ export const Home: FC = () => {
             {title}
           </Text>
         )}
-        renderItem={({ item }) => <CardMeal meal={item} activeOpacity={0.65} />}
+        renderItem={({ item }) => (
+          <CardMeal
+            meal={item}
+            activeOpacity={0.65}
+            onPress={() => handleClickCardMeal(item)}
+          />
+        )}
         fadingEdgeLength={32}
       />
     </Theme>
