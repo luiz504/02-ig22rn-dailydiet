@@ -1,48 +1,87 @@
-import { FC, useState } from 'react'
-import { SectionList } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import { FC, useCallback, useMemo, useState } from 'react'
+import { ActivityIndicator, SectionList } from 'react-native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import { useTheme } from 'styled-components/native'
 
 import { HeaderUserLogo } from '~/screens/Home/components/HeaderUserLogo'
 
-import { CardStatistics } from './components/CardStatistics'
+import { getStoredDays } from '~/storage/utils/storage_days'
+import { getMealsByDays } from '~/storage/meals/getMealsByDays'
+
+import {
+  CardStatistics,
+  CardStatisticsSkeleton,
+} from './components/CardStatistics'
 import { Theme } from '~/components/Theme'
 import { Text } from '~/components/Text'
 import { Button } from '~/components/Button'
 import { CardMeal } from './components/CardMeal'
 
-import { SectionNew } from './styles'
-
-import { mockMeals, mockStatistics } from './mockMeals'
+import { IndicatorContainer, SectionNew } from './styles'
 
 import { Meal } from '~/models/Meal'
 
-type MealsSectionList = Array<{ title: string; data: Meal[] }>
+import { processMealStatistics } from '~/utils/precessMealsStatistics'
+import { MealsSectionList } from './types'
 
 export const Home: FC = () => {
-  const [dailyMealsList] = useState<MealsSectionList>(
-    Object.entries(mockMeals).map(([key, meals]) => ({
-      title: key,
-      data: meals,
-    })),
-  )
-
-  const isEmptyList = !dailyMealsList?.length
-
   const navigator = useNavigation()
+  const theme = useTheme()
 
   const handleClickCardMeal = (meal: Meal) => {
     navigator.navigate('meal', { meal })
   }
+  const [isLoading, setIsLoading] = useState(true)
+  const [meals, setMeals] = useState<MealsSectionList>([])
+
+  useFocusEffect(
+    useCallback(() => {
+      let isActive = true
+
+      const loadMeals = async () => {
+        try {
+          setIsLoading(true)
+          const days = await getStoredDays()
+
+          if (days?.length) {
+            const mealsByDay = await getMealsByDays(days)
+
+            if (isActive) {
+              const mealsByDayFormatted: MealsSectionList = mealsByDay.map(
+                (entry) => ({ title: entry.day, data: entry.meals }),
+              )
+
+              setMeals(mealsByDayFormatted)
+            }
+          }
+          isActive && setIsLoading(false)
+        } catch (err) {
+          setIsLoading(false)
+        }
+      }
+
+      loadMeals()
+
+      return () => {
+        isActive = false
+      }
+    }, []),
+  )
+
+  const statistics = useMemo(() => processMealStatistics(meals), [meals])
 
   return (
     <Theme
       variant="white"
-      style={{ paddingHorizontal: 24 }}
+      style={{ paddingHorizontal: 24, paddingBottom: 8 }}
       testID="home-screen-container"
     >
       <HeaderUserLogo />
-
-      <CardStatistics statistics={mockStatistics} />
+      {statistics ? (
+        <CardStatistics statistics={statistics} />
+      ) : (
+        <CardStatisticsSkeleton />
+      )}
 
       <SectionNew>
         <Text>Meals</Text>
@@ -55,34 +94,50 @@ export const Home: FC = () => {
         />
       </SectionNew>
 
-      <SectionList
-        sections={dailyMealsList}
-        keyExtractor={(item) => item.id}
-        style={{ marginBottom: 8 }}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={[
-          { gap: 8 },
-          isEmptyList && {
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          },
-        ]}
-        renderSectionHeader={({ section: { title } }) => (
-          <Text size="lg" weight="bold" style={{ marginTop: 24 }}>
-            {title}
-          </Text>
-        )}
-        renderItem={({ item }) => (
-          <CardMeal
-            meal={item}
-            activeOpacity={0.65}
-            onPress={() => handleClickCardMeal(item)}
-            testID="card-meal"
+      {!!meals.length && (
+        <SectionList
+          sections={meals}
+          keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={[{ gap: 8 }]}
+          renderSectionHeader={({ section: { title } }) => (
+            <Text
+              size="lg"
+              weight="bold"
+              style={{ marginTop: 24 }}
+              testID="group-heading"
+            >
+              {title}
+            </Text>
+          )}
+          renderItem={({ item }) => (
+            <CardMeal
+              meal={item}
+              activeOpacity={0.65}
+              onPress={() => handleClickCardMeal(item)}
+              testID="card-meal"
+            />
+          )}
+          fadingEdgeLength={32}
+        />
+      )}
+
+      {isLoading && (
+        <IndicatorContainer>
+          <ActivityIndicator
+            size={'large'}
+            color={theme.colors['gray-400']}
+            testID="loading-indicator"
           />
-        )}
-        fadingEdgeLength={32}
-      />
+        </IndicatorContainer>
+      )}
+      {!isLoading && !meals.length && (
+        <IndicatorContainer>
+          <Text color={'gray-700'} testID="empty-feedback">
+            No Meals Records found.
+          </Text>
+        </IndicatorContainer>
+      )}
     </Theme>
   )
 }

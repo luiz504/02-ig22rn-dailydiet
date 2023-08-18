@@ -24,3 +24,11 @@ export const ArrowIcon = styled(ArrowUp)`
   top: 0px;
   right: 0px;
 `
+export const SkeletonContainer = styled.View`
+  margin-top: 12px;
+  margin-bottom: 40px;
+  padding: 20px 16px;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+`

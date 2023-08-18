@@ -2,6 +2,7 @@ import { FC, useEffect } from 'react'
 import { TouchableOpacityProps } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
+import { CardStatisticsSkeleton } from './CardStatistics.skeleton'
 
 import { useStatisticsCommons } from './common'
 
@@ -66,3 +67,5 @@ export const CardStatistics: FC<CardStatistics> = ({ statistics, testID }) => {
     </AnimatedWrapper>
   )
 }
+
+export { CardStatisticsSkeleton }

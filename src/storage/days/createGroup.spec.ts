@@ -1,7 +1,7 @@
 import { addDays, subDays, subMonths } from 'date-fns'
 import { createDay } from './createGroup'
 
-import { storageDateKeyFormat } from '../utils/storageDateKeyFormat'
+import { storageDateKeyFormat } from '../utils/storage_keys'
 
 import { getStoredDays, setStoredDays } from '../utils/storage_days'
 import AsyncStorage from '@react-native-async-storage/async-storage'

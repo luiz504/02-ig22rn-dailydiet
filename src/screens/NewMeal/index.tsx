@@ -2,7 +2,7 @@ import { FC, useMemo, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { Keyboard, TouchableWithoutFeedback } from 'react-native'
 import DateTimePicker from 'react-native-modal-datetime-picker'
-import { subMonths } from 'date-fns'
+import { endOfDay, subMonths } from 'date-fns'
 
 import { formatDate, formatTime } from '~/utils/dataTimeFormatter'
 
@@ -17,7 +17,8 @@ import { DatePicker } from '~/components/DatePicker'
 import { z } from 'zod'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { createDay } from '~/storage/days/createGroup'
+
+import { createMeal } from '~/storage/meals/createMeal'
 
 const newMealSchema = z.object({
   name: z.string().nonempty({ message: 'Meal name required.' }),
@@ -25,7 +26,7 @@ const newMealSchema = z.object({
   date: z
     .date()
     .min(subMonths(new Date(), 1))
-    .max(new Date(), "Today's Date & time limit."),
+    .max(endOfDay(new Date()), "Today's Date & time limit."),
   inDiet: z.boolean(),
 })
 
@@ -48,7 +49,8 @@ export const NewMeal: FC = () => {
     control,
     handleSubmit,
     watch,
-    formState: { errors },
+    setFocus,
+    formState: { errors, isSubmitting },
   } = useForm<NewMealType>({
     resolver: zodResolver(newMealSchema),
     defaultValues: {
@@ -67,9 +69,11 @@ export const NewMeal: FC = () => {
     return { date, time }
   }, [dateTime])
 
-  const handleCreateMeal = (data: NewMealType) => {
-    createDay(data.date)
-    // navigator.navigate('home')
+  const handleCreateMeal = async (data: NewMealType) => {
+    try {
+      await createMeal(data)
+      navigator.navigate('home')
+    } catch (err) {}
   }
 
   return (
@@ -93,6 +97,7 @@ export const NewMeal: FC = () => {
                     ref={ref}
                     onChangeText={onChange}
                     testID="input-name"
+                    onSubmitEditing={() => setFocus('description')}
                   />
                 )}
               />
@@ -209,6 +214,7 @@ export const NewMeal: FC = () => {
             style={{ marginTop: 'auto' }}
             label="Register meal"
             onPress={handleSubmit(handleCreateMeal)}
+            disabled={isSubmitting}
           />
         </ContentSection>
       </TouchableWithoutFeedback>

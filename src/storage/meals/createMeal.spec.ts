@@ -1,8 +1,8 @@
 import { Meal } from '~/models/Meal'
 import { createMeal } from './createMeal'
-import { storageDateKeyFormat } from '../utils/storageDateKeyFormat'
+import { storageDateKeyFormat } from '../utils/storage_keys'
 
-import { getStoredMeals, setStoredMeals } from '../utils/storage_meal'
+import { getStoredMealsByDay, setStoredMeals } from '../utils/storage_meal'
 import * as Crypto from 'expo-crypto'
 
 describe('createMeal action', () => {
@@ -40,11 +40,12 @@ describe('createMeal action', () => {
 
     const key = storageDateKeyFormat(new Date())
 
-    const newStoredMeal = await getStoredMeals(key)
+    const newStoredMeal = await getStoredMealsByDay(key)
 
-    expect(newStoredMeal).toEqual([
+    expect(newStoredMeal?.meals).toEqual([
       { ...newMealData, id: 'id', date: newMealData.date.toISOString() },
     ])
+    expect(newStoredMeal?.day).toBe(key)
   })
   it('should be able to create the a new meal and increment previous records from the day and sorting it by hour desc', async () => {
     jest.spyOn(Crypto, 'randomUUID').mockReturnValue('id')
@@ -61,12 +62,13 @@ describe('createMeal action', () => {
     // Act
     await createMeal(newMealData)
 
-    const newStoredMeal = await getStoredMeals(key)
+    const newStoredMeal = await getStoredMealsByDay(key)
 
-    expect(newStoredMeal).toEqual([
+    expect(newStoredMeal?.meals).toEqual([
       meals[1],
       { ...newMealData, id: 'id', date: newMealData.date.toISOString() },
       meals[0],
     ])
+    expect(newStoredMeal?.day).toBe(key)
   })
 })

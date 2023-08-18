@@ -5,8 +5,8 @@ import { Meal } from '~/models/Meal'
 
 import * as Crypto from 'expo-crypto'
 
-import { getStoredMeals, setStoredMeals } from '../utils/storage_meal'
-import { storageDateKeyFormat } from '../utils/storageDateKeyFormat'
+import { getStoredMealsByDay, setStoredMeals } from '../utils/storage_meal'
+import { storageDateKeyFormat } from '../utils/storage_keys'
 
 const createMealDTOSchema = z.object({
   name: z.string().nonempty(),
@@ -22,7 +22,7 @@ export async function createMeal(params: CreateMealDTO) {
 
   const key = storageDateKeyFormat(date)
 
-  const storedMeals = await getStoredMeals(key)
+  const storedMeals = await getStoredMealsByDay(key)
 
   const newMeal: Meal = {
     id: Crypto.randomUUID(),
@@ -36,7 +36,6 @@ export async function createMeal(params: CreateMealDTO) {
     await Promise.all([createDay(date), setStoredMeals(key, [newMeal])])
     return
   }
-  await setStoredMeals(key, [...storedMeals, newMeal])
 
-  // createDay(date)
+  await setStoredMeals(key, [...storedMeals.meals, newMeal])
 }
