@@ -1,11 +1,11 @@
-import { FC, useCallback, useState } from 'react'
+import { FC, useState } from 'react'
 import { SectionList } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { HeaderUserLogo } from '~/screens/Home/components/HeaderUserLogo'
 
-import { Theme } from '~/components/Theme'
 import { CardStatistics } from './components/CardStatistics'
+import { Theme } from '~/components/Theme'
 import { Text } from '~/components/Text'
 import { Button } from '~/components/Button'
 import { CardMeal } from './components/CardMeal'
@@ -30,12 +30,10 @@ export const Home: FC = () => {
 
   const navigator = useNavigation()
 
-  const handleClickCardMeal = useCallback(
-    (meal: Meal) => {
-      navigator.navigate('meal', { meal })
-    },
-    [navigator],
-  )
+  const handleClickCardMeal = (meal: Meal) => {
+    navigator.navigate('meal', { meal })
+  }
+
   return (
     <Theme
       variant="white"

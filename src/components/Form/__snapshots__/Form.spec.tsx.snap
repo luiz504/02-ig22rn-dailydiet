@@ -3,12 +3,16 @@
 exports[`Form Component should render correctly Form.Col default sm: col-sm 1`] = `
 {
   "gap": 4,
+  "paddingBottom": 24,
+  "position": "relative",
 }
 `;
 
 exports[`Form Component should render correctly Form.Col md: col-md 1`] = `
 {
   "gap": 8,
+  "paddingBottom": 24,
+  "position": "relative",
 }
 `;
 
@@ -16,6 +20,7 @@ exports[`Form Component should render correctly Form.Row lg: row-lg 1`] = `
 {
   "flexDirection": "row",
   "gap": 20,
+  "position": "relative",
 }
 `;
 
@@ -23,11 +28,8 @@ exports[`Form Component should render correctly Form.Row md: row-md 1`] = `
 {
   "flexDirection": "row",
   "gap": 8,
+  "position": "relative",
 }
 `;
 
-exports[`Form Component should render correctly Form.Wrapper: wrapper 1`] = `
-{
-  "gap": 24,
-}
-`;
+exports[`Form Component should render correctly Form.Wrapper: wrapper 1`] = `{}`;
