@@ -1,9 +1,11 @@
 import { endOfDay, subMonths } from 'date-fns'
 import { z } from 'zod'
 
-import { storageDateKeyFormat } from '../utils/storage_keys'
+import {
+  storageDateKeyFormat,
+  storageKeyToDateParse,
+} from '../utils/storage_keys'
 import { getStoredDays, setStoredDays } from '../utils/storage_days'
-import { sortDays } from '../utils/sortDays'
 
 export const dateSchema = z
   .date({ required_error: 'Date is required' })
@@ -28,7 +30,11 @@ export const createDay = async (date: Date) => {
 
   if (storedDays.includes(parsedDayKey)) return
 
-  const sortedDays = sortDays([...storedDays, parsedDayKey])
+  const sortedDays = [...storedDays, parsedDayKey].sort((a, b) => {
+    return (
+      storageKeyToDateParse(b).getTime() - storageKeyToDateParse(a).getTime()
+    )
+  })
 
   await setStoredDays(sortedDays)
 }

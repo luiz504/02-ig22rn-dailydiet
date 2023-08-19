@@ -1,3 +1,4 @@
+import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
 
 export const SectionNew = styled.View`
@@ -9,4 +10,8 @@ export const IndicatorContainer = styled.View`
   justify-content: center;
   align-items: center;
   padding: 24px;
+`
+export const AnimatedStatisticsSection = styled(Animated.View)`
+  margin-top: 12px;
+  margin-bottom: 40px;
 `

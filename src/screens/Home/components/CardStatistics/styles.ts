@@ -3,11 +3,6 @@ import styled from 'styled-components/native'
 import ArrowUp from '~/assets/icons/arrow-right-up.svg'
 import Animated from 'react-native-reanimated'
 
-export const AnimatedWrapper = styled(Animated.View)`
-  margin-top: 12px;
-  margin-bottom: 40px;
-`
-
 export const Container = styled(Pressable)`
   padding: 20px 16px;
   border-radius: 8px;
@@ -25,8 +20,6 @@ export const ArrowIcon = styled(ArrowUp)`
   right: 0px;
 `
 export const SkeletonContainer = styled.View`
-  margin-top: 12px;
-  margin-bottom: 40px;
   padding: 20px 16px;
   border-radius: 8px;
   justify-content: center;

@@ -13,19 +13,12 @@ describe('CardStatistics Component', () => {
       />,
     )
     const buttonElement = screen.getByTestId(buttonID)
-    const contentAnimated = screen.getByTestId('content-animated')
+
     const arrowIconElement = screen.getByTestId('arrow-icon')
     const headingElement = screen.getByTestId('heading')
     const spanElement = screen.getByTestId('span')
 
-    expect(screen.getByTestId('animated-wrapper')).toHaveProp(
-      'sharedTransitionTag',
-      'tag',
-    )
-
     expect(buttonElement.props.style).toMatchSnapshot('btn-style')
-
-    expect(contentAnimated.props.style).toMatchSnapshot('content-animated')
 
     expect(headingElement).toHaveTextContent('75.40%')
     expect(headingElement.props.style).toMatchSnapshot('heading-style')

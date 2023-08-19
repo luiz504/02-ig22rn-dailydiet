@@ -42,13 +42,7 @@ exports[`CardStatistics Component should render correctly with percentage >= 75:
 ]
 `;
 
-exports[`CardStatistics Component should render correctly with percentage >= 75: content-animated 1`] = `
-{
-  "alignItems": "center",
-  "justifyContent": "center",
-  "opacity": 1,
-}
-`;
+
 
 exports[`CardStatistics Component should render correctly with percentage >= 75: heading-style 1`] = `
 {

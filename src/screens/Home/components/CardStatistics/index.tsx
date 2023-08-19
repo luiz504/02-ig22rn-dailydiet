@@ -8,12 +8,7 @@ import { useStatisticsCommons } from './common'
 
 import { Text } from '~/components/Text'
 
-import {
-  AnimatedWrapper,
-  Container,
-  ContentAnimated,
-  ArrowIcon,
-} from './styles'
+import { Container, ContentAnimated, ArrowIcon } from './styles'
 
 import { Statistics } from '~/models/Statistics'
 
@@ -48,23 +43,21 @@ export const CardStatistics: FC<CardStatistics> = ({ statistics, testID }) => {
   }, [navigator, isVisible])
 
   return (
-    <AnimatedWrapper sharedTransitionTag="tag" testID={'animated-wrapper'}>
-      <Container
-        style={{ backgroundColor }}
-        testID={testID}
-        onPress={handleNavigate}
-      >
-        <ContentAnimated style={animatedStyle} testID={'content-animated'}>
-          <ArrowIcon color={arrowColor} testID="arrow-icon" />
-          <Text weight="bold" size={'2xl'} testID="heading">
-            {percentageString}
-          </Text>
-          <Text size={'sm'} testID="span" color="gray-700">
-            of the meals within the diet
-          </Text>
-        </ContentAnimated>
-      </Container>
-    </AnimatedWrapper>
+    <Container
+      style={{ backgroundColor }}
+      testID={testID}
+      onPress={handleNavigate}
+    >
+      <ContentAnimated style={animatedStyle} testID={'content-animated'}>
+        <ArrowIcon color={arrowColor} testID="arrow-icon" />
+        <Text weight="bold" size={'2xl'} testID="heading">
+          {percentageString}
+        </Text>
+        <Text size={'sm'} testID="span" color="gray-700">
+          of the meals within the diet
+        </Text>
+      </ContentAnimated>
+    </Container>
   )
 }
 

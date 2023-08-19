@@ -7,6 +7,7 @@ import { useTheme } from 'styled-components/native'
 
 export const CardStatisticsSkeleton: FC = () => {
   const theme = useTheme()
+
   return (
     <SkeletonContainer style={{ backgroundColor: theme.colors['gray-200'] }}>
       <Text weight="bold" size={'2xl'} testID="heading">

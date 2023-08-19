@@ -17,7 +17,11 @@ import { Text } from '~/components/Text'
 import { Button } from '~/components/Button'
 import { CardMeal } from './components/CardMeal'
 
-import { IndicatorContainer, SectionNew } from './styles'
+import {
+  IndicatorContainer,
+  SectionNew,
+  AnimatedStatisticsSection,
+} from './styles'
 
 import { Meal } from '~/models/Meal'
 
@@ -77,11 +81,14 @@ export const Home: FC = () => {
       testID="home-screen-container"
     >
       <HeaderUserLogo />
-      {statistics ? (
-        <CardStatistics statistics={statistics} />
-      ) : (
-        <CardStatisticsSkeleton />
-      )}
+
+      <AnimatedStatisticsSection sharedTransitionTag="tag">
+        {statistics ? (
+          <CardStatistics statistics={statistics} />
+        ) : (
+          <CardStatisticsSkeleton />
+        )}
+      </AnimatedStatisticsSection>
 
       <SectionNew>
         <Text>Meals</Text>
