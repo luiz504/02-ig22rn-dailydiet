@@ -24,14 +24,14 @@ const Row = styled.View<RowProps>`
   gap: ${({ variant = 'lg' }) => (variant === 'md' ? '8px' : '20px')};
 `
 
-export const Label = styled(Text).attrs(() => ({
+export const Label = styled(Text).attrs({
   size: 'md',
   weight: 'bold',
-}))``
-export const Error = styled(Text).attrs(() => ({
+})``
+export const Error = styled(Text).attrs({
   size: 'xs',
   color: 'red-900',
-}))`
+})`
   position: absolute;
   left: 0;
   bottom: 5;

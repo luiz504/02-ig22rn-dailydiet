@@ -25,7 +25,7 @@ import {
 
 import { Meal } from '~/models/Meal'
 
-import { processMealStatistics } from '~/utils/precessMealsStatistics'
+import { processMealStatistics } from '~/utils/processMealsStatistics'
 import { MealsSectionList } from './types'
 
 export const Home: FC = () => {

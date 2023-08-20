@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useNavigation } from '@react-navigation/native'
 import {
   act,
   fireEvent,
@@ -6,12 +8,12 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from '~/utils/test-utils'
-import { Home } from '.'
-import { useNavigation } from '@react-navigation/native'
-import * as daysStorageActions from '~/storage/utils/storage_days'
-import { MockMealsGrouped, mockDays } from './mockMeals'
+
 import * as mealsStorageActions from '~/storage/meals/getMealsByDays'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import * as daysStorageActions from '~/storage/utils/storage_days'
+
+import { Home } from '.'
+import { MockMealsGrouped, mockDays } from './mockMeals'
 
 jest.mock('@react-navigation/native', () => {
   return {

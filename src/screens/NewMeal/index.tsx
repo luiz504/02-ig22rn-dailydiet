@@ -9,7 +9,7 @@ import { endOfDay, subMonths } from 'date-fns'
 
 import { createMeal } from '~/storage/meals/createMeal'
 
-import { formatDate, formatTime } from '~/utils/dataTimeFormatter'
+import { formatDate, formatTime } from '~/utils/dateTimeFormatters'
 
 import { HeaderShort } from '~/components/HeaderShort'
 import { Theme } from '~/components/Theme'

@@ -2,7 +2,7 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import { FC, useState } from 'react'
 import { useTheme } from 'styled-components/native'
 
-import { formatDateAndTime } from '~/utils/dataTimeFormatter'
+import { formatDateAndTime } from '~/utils/dateTimeFormatters'
 
 import { ContentSection } from '~/components/ContentSection'
 import { HeaderShort } from '~/components/HeaderShort'

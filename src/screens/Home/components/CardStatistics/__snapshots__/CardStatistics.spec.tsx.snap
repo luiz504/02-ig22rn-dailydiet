@@ -42,8 +42,6 @@ exports[`CardStatistics Component should render correctly with percentage >= 75:
 ]
 `;
 
-
-
 exports[`CardStatistics Component should render correctly with percentage >= 75: heading-style 1`] = `
 {
   "color": "#1B1D1E",

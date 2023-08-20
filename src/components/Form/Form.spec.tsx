@@ -29,7 +29,7 @@ describe('Form Component', () => {
   })
 
   it('should render correctly Form.Row lg', () => {
-    render(<Form.Row variant="lg" testID={rowID} />)
+    render(<Form.Row testID={rowID} />)
 
     expect(screen.getByTestId(rowID).props.style).toMatchSnapshot('row-lg')
   })
