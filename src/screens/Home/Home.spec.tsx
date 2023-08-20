@@ -100,6 +100,7 @@ describe('Home Screen', () => {
         inDiet: expect.any(Boolean),
         date: expect.any(String),
       }),
+      groupName: expect.any(String),
     })
   })
   it('should render correctly the meals grouped by date', async () => {

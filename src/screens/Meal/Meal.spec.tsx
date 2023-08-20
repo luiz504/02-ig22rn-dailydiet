@@ -14,7 +14,7 @@ jest.mock('@react-navigation/native', () => {
 })
 
 const mockMealInDiet: Meal = {
-  date: new Date().toString(),
+  date: new Date().toISOString(),
   name: 'Tapioca with fake stuffing',
   description: 'In Diet Fake Meal',
   id: 'fake-id',

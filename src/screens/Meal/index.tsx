@@ -17,12 +17,13 @@ import { Meal } from '~/models/Meal'
 
 type RouteParams = {
   meal: Meal
+  groupName: string
 }
 
 export const MealScreen: FC = () => {
   const navigator = useNavigation()
   const theme = useTheme()
-  const { meal } = useRoute().params as RouteParams
+  const { meal, groupName } = useRoute().params as RouteParams
 
   const themeVariant = meal.inDiet ? 'green' : 'red'
 
@@ -34,7 +35,7 @@ export const MealScreen: FC = () => {
   const dateAndTimeString = formatDateAndTime(meal.date)
 
   const handleEditMeal = () => {
-    navigator.navigate('edit-meal', { meal })
+    navigator.navigate('edit-meal', { meal, groupName })
   }
 
   const handleDeleteMeal = () => {

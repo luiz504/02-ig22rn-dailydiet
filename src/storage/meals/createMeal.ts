@@ -1,6 +1,6 @@
 import { endOfDay, subMonths } from 'date-fns'
 import { z } from 'zod'
-import { createDay } from '../days/createGroup'
+import { createDayRegister } from '../days/createDayRegister'
 import { Meal } from '~/models/Meal'
 
 import * as Crypto from 'expo-crypto'
@@ -33,7 +33,7 @@ export async function createMeal(params: CreateMealDTO) {
   }
 
   if (!storedMeals) {
-    await Promise.all([createDay(date), setStoredMeals(key, [newMeal])])
+    await Promise.all([createDayRegister(date), setStoredMeals(key, [newMeal])])
     return
   }
 

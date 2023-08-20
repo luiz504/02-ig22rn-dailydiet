@@ -16,7 +16,7 @@ export const dateSchema = z
     message: 'Unable to create entries to the next Day',
   })
 
-export const createDay = async (date: Date) => {
+export const createDayRegister = async (date: Date) => {
   dateSchema.parse(date)
 
   const storedDays = await getStoredDays()

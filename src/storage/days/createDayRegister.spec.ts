@@ -1,5 +1,5 @@
 import { addDays, subDays, subMonths } from 'date-fns'
-import { createDay } from './createGroup'
+import { createDayRegister } from './createDayRegister'
 
 import { storageDateKeyFormat } from '../utils/storage_keys'
 
@@ -12,13 +12,15 @@ describe('createGroup action', () => {
     await AsyncStorage.clear()
   })
   it('should throw an error when passing wrong date format or not following the constrains', async () => {
-    expect(createDay(undefined as any)).rejects.toThrow()
+    expect(createDayRegister(undefined as any)).rejects.toThrow()
 
     // more than 1 month past
-    expect(createDay(subDays(subMonths(new Date(), 1), 1))).rejects.toThrow()
+    expect(
+      createDayRegister(subDays(subMonths(new Date(), 1), 1)),
+    ).rejects.toThrow()
 
     // Future date & time limited to today
-    expect(createDay(addDays(new Date(), 1))).rejects.toThrow()
+    expect(createDayRegister(addDays(new Date(), 1))).rejects.toThrow()
   })
 
   it('should create a new day entry in the DAY_COLLECTION when it is empty or doest exists', async () => {
@@ -26,7 +28,7 @@ describe('createGroup action', () => {
     const formattedNowDate = storageDateKeyFormat(now)
 
     // Act
-    await createDay(now)
+    await createDayRegister(now)
 
     const storedDay = await getStoredDays()
 
@@ -43,7 +45,7 @@ describe('createGroup action', () => {
     const formattedNowDate = storageDateKeyFormat(now)
 
     // Act
-    await createDay(now)
+    await createDayRegister(now)
 
     const storedDay = await getStoredDays()
 
@@ -67,7 +69,7 @@ describe('createGroup action', () => {
     const setItemSpy = jest.spyOn(AsyncStorage, 'setItem')
 
     // Act
-    await createDay(now)
+    await createDayRegister(now)
 
     const storedDay = await getStoredDays()
 

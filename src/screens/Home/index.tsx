@@ -32,8 +32,8 @@ export const Home: FC = () => {
   const navigator = useNavigation()
   const theme = useTheme()
 
-  const handleClickCardMeal = (meal: Meal) => {
-    navigator.navigate('meal', { meal })
+  const handleClickCardMeal = (meal: Meal, groupName: string) => {
+    navigator.navigate('meal', { meal, groupName })
   }
   const [isLoading, setIsLoading] = useState(true)
   const [meals, setMeals] = useState<MealsSectionList>([])
@@ -45,6 +45,7 @@ export const Home: FC = () => {
       const loadMeals = async () => {
         try {
           setIsLoading(true)
+          // await AsyncStorage.clear()
           const days = await getStoredDays()
 
           if (days?.length) {
@@ -117,11 +118,11 @@ export const Home: FC = () => {
               {title}
             </Text>
           )}
-          renderItem={({ item }) => (
+          renderItem={({ item, section: { title } }) => (
             <CardMeal
               meal={item}
               activeOpacity={0.65}
-              onPress={() => handleClickCardMeal(item)}
+              onPress={() => handleClickCardMeal(item, title)}
               testID="card-meal"
             />
           )}

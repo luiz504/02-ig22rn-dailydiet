@@ -9,6 +9,7 @@
     "web": "expo start --web",
     "prepare": "husky install",
     "test": "jest --coverage",
+    "test:watch": "jest --watch",
     "test:badges": "npm run test && jest-coverage-badges --input coverage/coverage-summary.json --output __badges__"
   },
   "dependencies": {

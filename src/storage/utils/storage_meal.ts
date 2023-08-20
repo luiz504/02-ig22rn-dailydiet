@@ -26,6 +26,7 @@ export async function setStoredMeals(key: string, meals: Meal[]) {
 }
 
 export async function getStoredMealsByDays(keys: string[]) {
+  if (!keys?.length) return
   const keysCombined = keys.map((k) => `${MEAL_COLLECTION}-${k}`)
   const entries = await AsyncStorage.multiGet(keysCombined)
   return entries

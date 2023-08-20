@@ -11,9 +11,11 @@ export declare global {
       };
       meal: {
         meal: Meal
+        groupName: string
       }
       'edit-meal': {
-        meal: Meal
+        meal: Meal,
+        groupName: string
       }
     }
   }

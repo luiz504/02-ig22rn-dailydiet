@@ -1,8 +1,13 @@
 import { FC, useMemo, useState } from 'react'
-import { useNavigation } from '@react-navigation/native'
 import { Keyboard, TouchableWithoutFeedback } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { Controller, useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import { endOfDay, subMonths } from 'date-fns'
+
+import { createMeal } from '~/storage/meals/createMeal'
 
 import { formatDate, formatTime } from '~/utils/dataTimeFormatter'
 
@@ -14,11 +19,6 @@ import { Form } from '~/components/Form'
 import { Select } from '~/components/Select'
 import { Button } from '~/components/Button'
 import { DatePicker } from '~/components/DatePicker'
-import { z } from 'zod'
-import { Controller, useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-
-import { createMeal } from '~/storage/meals/createMeal'
 
 const newMealSchema = z.object({
   name: z.string().nonempty({ message: 'Meal name required.' }),
