@@ -34,7 +34,7 @@ export const Error = styled(Text).attrs({
 })`
   position: absolute;
   left: 0;
-  bottom: 5;
+  bottom: 5px;
 `
 
 export const Form = { Wrapper, Col, Row, Label, Error }

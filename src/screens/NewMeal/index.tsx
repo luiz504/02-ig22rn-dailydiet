@@ -1,5 +1,5 @@
 import { FC, useMemo, useState } from 'react'
-import { Keyboard, TouchableWithoutFeedback } from 'react-native'
+import { Alert, Keyboard, TouchableWithoutFeedback } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -27,7 +27,7 @@ const newMealSchema = z.object({
     .date()
     .min(subMonths(new Date(), 1))
     .max(endOfDay(new Date()), "Today's Date & time limit."),
-  inDiet: z.boolean(),
+  inDiet: z.boolean({ required_error: 'You must select a Diet type.' }),
 })
 
 type NewMealType = z.infer<typeof newMealSchema>
@@ -73,7 +73,9 @@ export const NewMeal: FC = () => {
     try {
       await createMeal(data)
       navigator.navigate('home')
-    } catch (err) {}
+    } catch (err) {
+      Alert.alert('Create Meal Error', 'Something went wrong :/, try again.')
+    }
   }
 
   return (
@@ -85,7 +87,7 @@ export const NewMeal: FC = () => {
 
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <ContentSection>
-          <Form.Wrapper style={{ marginBottom: 32 }}>
+          <Form.Wrapper style={{ marginBottom: 32 }} testID="form">
             <Form.Col>
               <Form.Label>Name</Form.Label>
 
@@ -97,11 +99,17 @@ export const NewMeal: FC = () => {
                     ref={ref}
                     onChangeText={onChange}
                     testID="input-name"
-                    onSubmitEditing={() => setFocus('description')}
+                    onSubmitEditing={() => {
+                      setFocus('description')
+                    }}
                   />
                 )}
               />
-              {errors.name && <Form.Error>{errors.name.message}</Form.Error>}
+              {errors.name && (
+                <Form.Error testID="name-error">
+                  {errors.name.message}
+                </Form.Error>
+              )}
             </Form.Col>
 
             <Form.Col>
@@ -150,7 +158,7 @@ export const NewMeal: FC = () => {
                   onPress={() => handleDateTimePickerModal('date')}
                   testID="btn-date"
                 >
-                  <DatePicker.Label numberOfLines={1}>
+                  <DatePicker.Label numberOfLines={1} testID="label-date">
                     {dateTimeString.date}
                   </DatePicker.Label>
                 </DatePicker.Button>
@@ -161,15 +169,19 @@ export const NewMeal: FC = () => {
 
                 <DatePicker.Button
                   onPress={() => handleDateTimePickerModal('time')}
-                  testID="btn-hour"
+                  testID="btn-time"
                 >
-                  <DatePicker.Label numberOfLines={1}>
+                  <DatePicker.Label numberOfLines={1} testID="label-time">
                     {dateTimeString.time}
                   </DatePicker.Label>
                 </DatePicker.Button>
               </Form.Col>
 
-              {errors.date && <Form.Error>{errors.date.message}</Form.Error>}
+              {errors.date && (
+                <Form.Error testID="date-error">
+                  {errors.date.message}
+                </Form.Error>
+              )}
             </Form.Row>
 
             <Form.Col variant="md">
@@ -205,7 +217,9 @@ export const NewMeal: FC = () => {
                 )}
               />
               {errors.inDiet && (
-                <Form.Error>{errors.inDiet.message}</Form.Error>
+                <Form.Error testID="in-diet-error">
+                  {errors.inDiet.message}
+                </Form.Error>
               )}
             </Form.Col>
           </Form.Wrapper>
@@ -215,6 +229,7 @@ export const NewMeal: FC = () => {
             label="Register meal"
             onPress={handleSubmit(handleCreateMeal)}
             disabled={isSubmitting}
+            testID="btn-submit"
           />
         </ContentSection>
       </TouchableWithoutFeedback>
