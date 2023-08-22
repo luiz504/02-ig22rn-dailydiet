@@ -19,5 +19,5 @@ module.exports = {
     "\\.svg": "<rootDir>/__mocks__/svgMock.js"   
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
- 
+  globalSetup: "<rootDir>/jest.global.js",
 }

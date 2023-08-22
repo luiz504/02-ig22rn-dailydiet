@@ -2,7 +2,7 @@ import { FC, useMemo, useState } from 'react'
 import { Alert, Keyboard, TouchableWithoutFeedback } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Controller, useForm } from 'react-hook-form'
-import { ZodError, z } from 'zod'
+import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import { endOfDay, subMonths } from 'date-fns'
@@ -26,10 +26,7 @@ import { Meal } from '~/models/Meal'
 const editMealSchema = z.object({
   name: z.string().nonempty({ message: 'Meal name required.' }),
   description: z.string(),
-  date: z
-    .date()
-    .min(subMonths(new Date(), 1))
-    .max(endOfDay(new Date()), "Today's Date & time limit."),
+  date: z.date().max(endOfDay(new Date()), "Today's Date & time limit."),
   inDiet: z.boolean(),
 })
 
@@ -81,6 +78,7 @@ export const EditMeal: FC = () => {
 
   const handleEditMeal = async (data: EditMealType) => {
     const { date } = data
+
     const dateStringified = date.toISOString()
 
     const changes = getChangedProperties(meal, {
@@ -95,16 +93,15 @@ export const EditMeal: FC = () => {
           { ...changes, date: changes?.date ? date : undefined },
         )
 
-        navigator.navigate('meal', { meal: { ...meal, ...changes }, groupName })
+        navigator.navigate('meal', {
+          meal: { ...meal, ...changes },
+          groupName,
+        })
       } catch (err) {
-        if (err instanceof ZodError) {
-          Alert.alert('Update Meal Error :/', err.errors[0].message)
-        } else {
-          Alert.alert(
-            'Update Meal Error :/',
-            'Something went wrong with the update process, please try again.',
-          )
-        }
+        Alert.alert(
+          'Update Meal Error :/',
+          'Something went wrong with the update process, please try again.',
+        )
       }
     } else {
       navigator.navigate('meal', { meal, groupName })
@@ -118,7 +115,10 @@ export const EditMeal: FC = () => {
         onReturnRequest={() => navigator.goBack()}
       />
 
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <TouchableWithoutFeedback
+        onPress={() => Keyboard.dismiss()}
+        testID="form"
+      >
         <ContentSection>
           <Form.Wrapper style={{ marginBottom: 32 }}>
             <Form.Col>
@@ -137,7 +137,11 @@ export const EditMeal: FC = () => {
                   />
                 )}
               />
-              {errors.name && <Form.Error>{errors.name.message}</Form.Error>}
+              {errors.name && (
+                <Form.Error testID="name-error">
+                  {errors.name.message}
+                </Form.Error>
+              )}
             </Form.Col>
 
             <Form.Col>
@@ -187,7 +191,7 @@ export const EditMeal: FC = () => {
                   onPress={() => handleDateTimePickerModal('date')}
                   testID="btn-date"
                 >
-                  <DatePicker.Label numberOfLines={1}>
+                  <DatePicker.Label numberOfLines={1} testID="label-date">
                     {dateTimeString.date}
                   </DatePicker.Label>
                 </DatePicker.Button>
@@ -198,15 +202,19 @@ export const EditMeal: FC = () => {
 
                 <DatePicker.Button
                   onPress={() => handleDateTimePickerModal('time')}
-                  testID="btn-hour"
+                  testID="btn-time"
                 >
-                  <DatePicker.Label numberOfLines={1}>
+                  <DatePicker.Label numberOfLines={1} testID="label-time">
                     {dateTimeString.time}
                   </DatePicker.Label>
                 </DatePicker.Button>
               </Form.Col>
 
-              {errors.date && <Form.Error>{errors.date.message}</Form.Error>}
+              {errors.date && (
+                <Form.Error testID="date-error">
+                  {errors.date.message}
+                </Form.Error>
+              )}
             </Form.Row>
 
             <Form.Col variant="md">
@@ -241,9 +249,6 @@ export const EditMeal: FC = () => {
                   </Form.Row>
                 )}
               />
-              {errors.inDiet && (
-                <Form.Error>{errors.inDiet.message}</Form.Error>
-              )}
             </Form.Col>
           </Form.Wrapper>
 
@@ -252,6 +257,7 @@ export const EditMeal: FC = () => {
             label="Save Changes"
             onPress={handleSubmit(handleEditMeal)}
             disabled={isSubmitting}
+            testID="btn-submit"
           />
         </ContentSection>
       </TouchableWithoutFeedback>

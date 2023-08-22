@@ -69,6 +69,25 @@ describe('Meal Screen', () => {
     expect(screen.queryByTestId(alertDeleteID)).toBeNull()
   })
 
+  it('should render correctly out of Diet', () => {
+    jest.mocked(useRoute).mockReturnValue({
+      params: { meal: { ...mockMealInDiet, inDiet: false } },
+    } as any)
+
+    render(<MealScreen />)
+
+    expect(screen.getByTestId(containerID)).toHaveStyle({
+      backgroundColor: theme.colors['red-100'],
+    })
+
+    expect(screen.getByTestId(cardStatusDotID)).toHaveStyle({
+      backgroundColor: theme.colors['red-900'],
+    })
+    expect(screen.getByTestId(cardStatusLabelID)).toHaveTextContent(
+      'outside the diet',
+    )
+  })
+
   it('should open and close the delete alert modal correctly', () => {
     render(<MealScreen />)
 

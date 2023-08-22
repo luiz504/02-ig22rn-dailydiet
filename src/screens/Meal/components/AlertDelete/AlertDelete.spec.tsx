@@ -42,11 +42,21 @@ describe('AlertDelete Component', () => {
 
     render(<AlertDelete show onDismiss={onDismiss} onConfirm={onConfirm} />)
 
+    const overlayElement = screen.getByTestId('alert-delete-overlay')
     const btnDismiss = screen.getByTestId('alert-delete-btn-dismiss')
     const btnConfirm = screen.getByTestId('alert-delete-btn-confirm')
 
     // Act
+    fireEvent(overlayElement, 'onTouchEnd')
 
+    // Assert
+    expect(onDismiss).toBeCalledTimes(1)
+    expect(onDismiss).toBeCalledWith()
+
+    //
+    jest.clearAllMocks()
+
+    // Act
     fireEvent.press(btnDismiss)
 
     // Asset

@@ -8,20 +8,13 @@ import { HeaderUserLogo } from '~/screens/Home/components/HeaderUserLogo'
 import { getStoredDays } from '~/storage/utils/storage_days'
 import { getMealsByDays } from '~/storage/meals/getMealsByDays'
 
-import {
-  CardStatistics,
-  CardStatisticsSkeleton,
-} from './components/CardStatistics'
+import { CardStatistics } from './components/CardStatistics'
 import { Theme } from '~/components/Theme'
 import { Text } from '~/components/Text'
 import { Button } from '~/components/Button'
 import { CardMeal } from './components/CardMeal'
 
-import {
-  IndicatorContainer,
-  SectionNew,
-  AnimatedStatisticsSection,
-} from './styles'
+import { IndicatorContainer, SectionNew } from './styles'
 
 import { Meal } from '~/models/Meal'
 
@@ -83,13 +76,7 @@ export const Home: FC = () => {
     >
       <HeaderUserLogo />
 
-      <AnimatedStatisticsSection sharedTransitionTag="tag">
-        {statistics ? (
-          <CardStatistics statistics={statistics} />
-        ) : (
-          <CardStatisticsSkeleton />
-        )}
-      </AnimatedStatisticsSection>
+      <CardStatistics statistics={statistics} />
 
       <SectionNew>
         <Text>Meals</Text>

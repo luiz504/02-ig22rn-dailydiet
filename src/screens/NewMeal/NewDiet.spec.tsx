@@ -16,7 +16,7 @@ import { theme } from '~/styles'
 import { useNavigation } from '@react-navigation/native'
 import { Alert, Keyboard } from 'react-native'
 import { formatDate, formatTime } from '~/utils/dateTimeFormatters'
-import { subDays, subMonths } from 'date-fns'
+import { subDays, subHours, subMonths } from 'date-fns'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import RHF, { useForm } from 'react-hook-form'
 
@@ -196,18 +196,16 @@ describe('NewMeal Screen', () => {
 
     // Act
     // eslint-disable-next-line testing-library/no-unnecessary-act
+
+    const newHour = subHours(dateFromProps, 3)
     await act(async () => {
-      fireEvent(
-        screen.UNSAFE_getByType(DateTimePicker),
-        'onConfirm',
-        subDays(new Date(), 1),
-      )
+      fireEvent(screen.UNSAFE_getByType(DateTimePicker), 'onConfirm', newHour)
       await waitFor(async () => {
         expect(screen.getByTestId(testIDs.labelDateID).props.children).toBe(
-          formatDate(subDays(dateFromProps, 1)),
+          formatDate(dateFromProps),
         )
       })
-      expect(labelTime.props.children).toBe(formatTime(dateFromProps))
+      expect(labelTime.props.children).toBe(formatTime(newHour))
     })
 
     await waitForElementToBeRemoved(() =>
@@ -291,40 +289,39 @@ describe('NewMeal Screen', () => {
     render(<NewMeal />)
 
     // Act Fill Form
-    await act(async () => {
-      fireEvent.changeText(
-        screen.getByTestId(testIDs.inputNameID),
-        'Fake Meal Name',
-      )
 
-      fireEvent.changeText(
-        screen.getByTestId(testIDs.inputDescriptionID),
-        'Fake Meal Description',
-      )
+    fireEvent.changeText(
+      screen.getByTestId(testIDs.inputNameID),
+      'Fake Meal Name',
+    )
 
-      fireEvent.press(screen.getByTestId(testIDs.btnDateID))
+    fireEvent.changeText(
+      screen.getByTestId(testIDs.inputDescriptionID),
+      'Fake Meal Description',
+    )
 
-      fireEvent(
-        screen.UNSAFE_getByType(DateTimePicker),
-        'onConfirm',
-        subDays(new Date(), 1),
-      )
+    fireEvent.press(screen.getByTestId(testIDs.btnDateID))
 
-      fireEvent.press(screen.getByTestId(testIDs.btnInDietID))
+    fireEvent(
+      screen.UNSAFE_getByType(DateTimePicker),
+      'onConfirm',
+      subDays(new Date(), 1),
+    )
 
-      fireEvent.press(screen.getByTestId(testIDs.btnSubmitID))
+    fireEvent.press(screen.getByTestId(testIDs.btnInDietID))
 
-      await waitFor(() => {
-        expect(navigate).toBeCalledTimes(1)
-      })
-      expect(navigate).toBeCalledWith('home')
+    fireEvent.press(screen.getByTestId(testIDs.btnSubmitID))
 
-      expect(createMealSpy).toBeCalledWith({
-        date: new Date('2023-08-14T15:00:00.000Z'),
-        description: 'Fake Meal Description',
-        inDiet: true,
-        name: 'Fake Meal Name',
-      })
+    await waitFor(() => {
+      expect(navigate).toBeCalledTimes(1)
+    })
+    expect(navigate).toBeCalledWith('home')
+
+    expect(createMealSpy).toBeCalledWith({
+      date: new Date('2023-08-14T12:00:00.000Z'),
+      description: 'Fake Meal Description',
+      inDiet: true,
+      name: 'Fake Meal Name',
     })
   })
 
@@ -342,34 +339,32 @@ describe('NewMeal Screen', () => {
     render(<NewMeal />)
 
     // Act Fill Form
-    await act(async () => {
-      fireEvent.changeText(
-        screen.getByTestId(testIDs.inputNameID),
-        'Fake Meal Name',
-      )
+    fireEvent.changeText(
+      screen.getByTestId(testIDs.inputNameID),
+      'Fake Meal Name',
+    )
 
-      fireEvent.changeText(
-        screen.getByTestId(testIDs.inputDescriptionID),
-        'Fake Meal Description',
-      )
+    fireEvent.changeText(
+      screen.getByTestId(testIDs.inputDescriptionID),
+      'Fake Meal Description',
+    )
 
-      fireEvent.press(screen.getByTestId(testIDs.btnDateID))
+    fireEvent.press(screen.getByTestId(testIDs.btnDateID))
 
-      fireEvent(
-        screen.UNSAFE_getByType(DateTimePicker),
-        'onConfirm',
-        subDays(new Date(), 1),
-      )
+    fireEvent(
+      screen.UNSAFE_getByType(DateTimePicker),
+      'onConfirm',
+      subDays(new Date(), 1),
+    )
 
-      fireEvent.press(screen.getByTestId(testIDs.btnInDietID))
+    fireEvent.press(screen.getByTestId(testIDs.btnInDietID))
 
-      fireEvent.press(screen.getByTestId(testIDs.btnSubmitID))
+    fireEvent.press(screen.getByTestId(testIDs.btnSubmitID))
 
-      await waitFor(() => {
-        expect(AlertSpy).toBeCalledWith(expect.any(String), expect.any(String))
-      })
-
-      expect(navigate).not.toBeCalled()
+    await waitFor(() => {
+      expect(AlertSpy).toBeCalledWith(expect.any(String), expect.any(String))
     })
+
+    expect(navigate).not.toBeCalled()
   })
 })

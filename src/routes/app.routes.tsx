@@ -12,7 +12,11 @@ export const AppRoutes = () => {
   return (
     <Navigator
       initialRouteName="home"
-      screenOptions={{ headerShown: false, animation: 'fade' }}
+      screenOptions={{
+        headerShown: false,
+        animation: 'fade',
+        animationDuration: 1000,
+      }}
     >
       <Screen name="home" component={Home} />
       <Screen name="statistics" component={StatisticsScreen} />
