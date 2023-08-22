@@ -38,7 +38,7 @@ export const Home: FC = () => {
       const loadMeals = async () => {
         try {
           setIsLoading(true)
-          // await AsyncStorage.clear()
+
           const days = await getStoredDays()
 
           if (days?.length) {
@@ -51,6 +51,8 @@ export const Home: FC = () => {
 
               setMeals(mealsByDayFormatted)
             }
+          } else {
+            setMeals([])
           }
           isActive && setIsLoading(false)
         } catch (err) {

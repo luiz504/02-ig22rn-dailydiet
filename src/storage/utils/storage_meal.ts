@@ -32,3 +32,7 @@ export async function getStoredMealsByDays(keys: string[]) {
     .map(([, value]) => (value ? JSON.parse(value) : null))
     .filter((value) => value) as MealGroupByDay[]
 }
+
+export async function deleteStoredMealCollection(key: string) {
+  return AsyncStorage.removeItem(`${MEAL_COLLECTION}-${key}`)
+}

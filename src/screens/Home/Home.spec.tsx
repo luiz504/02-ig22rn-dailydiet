@@ -128,4 +128,14 @@ describe('Home Screen', () => {
     expect(groupsHeading.length).toBe(headingsCount)
     screen.unmount()
   })
+  it('should hide the loading indicator when got any error with getMeals', async () => {
+    jest
+      .spyOn(mealsStorageActions, 'getMealsByDays')
+      .mockRejectedValue('any error')
+    render(<Home />)
+
+    await waitForElementToBeRemoved(() =>
+      screen.queryByTestId('loading-indicator'),
+    )
+  })
 })

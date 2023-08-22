@@ -1,9 +1,14 @@
-import { fireEvent, render, screen } from '~/utils/test-utils'
+import { Alert } from 'react-native'
+import { useNavigation, useRoute } from '@react-navigation/native'
+import { fireEvent, render, screen, waitFor } from '~/utils/test-utils'
 import { MealScreen } from '.'
 import { Meal } from '~/models/Meal'
-import { useNavigation, useRoute } from '@react-navigation/native'
+
+import * as DeleteMealModule from '~/storage/meals/deleteMeal'
 
 import { theme } from '~/styles'
+import { setStoredMeals } from '~/storage/utils/storage_meal'
+import { setStoredDays } from '~/storage/utils/storage_days'
 
 jest.mock('@react-navigation/native', () => {
   return {
@@ -37,6 +42,8 @@ describe('Meal Screen', () => {
       .mocked(useRoute)
       .mockReturnValue({ params: { meal: mockMealInDiet } } as any)
   })
+
+  const useDeleteMealSpy = () => jest.spyOn(DeleteMealModule, 'deleteMeal')
 
   it('should render correctly inDiet', () => {
     render(<MealScreen />)
@@ -136,5 +143,55 @@ describe('Meal Screen', () => {
 
     expect(navigate).toHaveBeenCalledTimes(1)
     expect(navigate).toHaveBeenCalledWith('home')
+  })
+
+  it('should navigate to Home screen after successfully delete Meal', async () => {
+    const groupName = '2023/12/10'
+    await setStoredDays([groupName])
+    await setStoredMeals(groupName, [mockMealInDiet])
+    const deleteMealSpy = useDeleteMealSpy()
+    const navigate = jest.fn()
+
+    jest.mocked(useRoute).mockReturnValue({
+      params: { meal: mockMealInDiet, groupName },
+    } as any)
+    jest.mocked(useNavigation).mockReturnValue({ navigate })
+
+    render(<MealScreen />)
+
+    // Act open modal
+    fireEvent.press(screen.getByTestId(btnDeleteID))
+    fireEvent.press(screen.getByTestId('alert-delete-btn-confirm'))
+
+    await waitFor(() => expect(navigate).toBeCalledWith('home'))
+    expect(deleteMealSpy).toBeCalledWith({
+      groupName,
+      mealId: mockMealInDiet.id,
+    })
+  })
+
+  it('should trigger an Alert if some error happen with the deleteMeal Function', async () => {
+    const groupName = '2023/12/10'
+    await setStoredDays([groupName])
+    await setStoredMeals(groupName, [mockMealInDiet])
+    useDeleteMealSpy().mockRejectedValue('dd')
+    const navigate = jest.fn()
+    const alertSpy = jest.spyOn(Alert, 'alert')
+
+    jest.mocked(useRoute).mockReturnValue({
+      params: { meal: mockMealInDiet, groupName },
+    } as any)
+    jest.mocked(useNavigation).mockReturnValue({ navigate })
+
+    render(<MealScreen />)
+
+    // Act open modal
+    fireEvent.press(screen.getByTestId(btnDeleteID))
+    fireEvent.press(screen.getByTestId('alert-delete-btn-confirm'))
+
+    await waitFor(() =>
+      expect(alertSpy).toBeCalledWith(expect.any(String), expect.any(String)),
+    )
+    expect(navigate).not.toBeCalled()
   })
 })

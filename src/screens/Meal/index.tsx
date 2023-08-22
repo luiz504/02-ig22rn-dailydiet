@@ -14,6 +14,9 @@ import { AlertDelete } from './components/AlertDelete'
 import { Row, DietCard, Dot, Col } from './styles'
 
 import { Meal } from '~/models/Meal'
+import { Alert } from 'react-native'
+
+import { deleteMeal } from '~/storage/meals/deleteMeal'
 
 type RouteParams = {
   meal: Meal
@@ -37,9 +40,21 @@ export const MealScreen: FC = () => {
   const handleEditMeal = () => {
     navigator.navigate('edit-meal', { meal, groupName })
   }
+  const [isDeleting, setIsDeleting] = useState(false)
+  const handleDeleteMeal = async () => {
+    try {
+      setIsDeleting(true)
+      await deleteMeal({ groupName, mealId: meal.id })
 
-  const handleDeleteMeal = () => {
-    navigator.navigate('home')
+      navigator.navigate('home')
+    } catch (err) {
+      setIsDeleting(false)
+
+      Alert.alert(
+        'Delete Meal Error',
+        'Something went wrong with the deletion request.',
+      )
+    }
   }
 
   const [showDeleteAlert, setShowDeleteAlert] = useState(false)
@@ -53,6 +68,7 @@ export const MealScreen: FC = () => {
         <HeaderShort
           title="Meal"
           onReturnRequest={() => navigator.navigate('home')}
+          disabledReturn={isDeleting}
         />
 
         <ContentSection>
@@ -91,6 +107,7 @@ export const MealScreen: FC = () => {
               icon="pen"
               label="Edit Meal"
               onPress={handleEditMeal}
+              disabled={isDeleting}
               testID="btn-edit"
             />
 
@@ -99,6 +116,7 @@ export const MealScreen: FC = () => {
               variant="outline"
               label="Delete Meal"
               onPress={() => handleRequestDeleteMeal('request')}
+              disabled={isDeleting}
               testID="btn-delete"
             />
           </Col>
