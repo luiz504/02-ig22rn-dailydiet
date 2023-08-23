@@ -1,6 +1,7 @@
-import { locale } from 'expo-localization'
+import { getFirstUserConfig } from './dateTimeFormatters'
 export function percentageFormatter(value: number) {
   const percent = Number((value / 100).toFixed(4))
+  const locale = getFirstUserConfig().languageTag
 
   const intlFormatter = Intl.NumberFormat(locale, {
     style: 'percent',

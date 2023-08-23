@@ -1,5 +1,3 @@
 import { Meal } from '~/models/Meal'
 
-export type DailyMeals = {
-  [ddmmyy: string]: Meal[]
-}
+export type MealsSectionList = Array<{ title: string; data: Meal[] }>

@@ -1,6 +1,6 @@
 import * as expoFonts from 'expo-font'
 
-import { renderThemed } from '~/utils/test-utils'
+import { renderThemed, screen, waitFor } from '~/utils/test-utils'
 
 import App from './App'
 
@@ -23,6 +23,10 @@ describe('Hello', () => {
   it('should render correctly when fonts is loaded', async () => {
     useFontsSpy.mockReturnValue([true, null])
     const three = renderThemed(<App />).toJSON()
+
+    await waitFor(() => {
+      expect(screen.queryByTestId('loading-indicator')).toBeNull()
+    })
 
     expect(three).toBeTruthy()
   })

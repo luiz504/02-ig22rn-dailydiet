@@ -1,14 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`CardStatistics Component should not render correctly when not provided statistics: btn-no-statistics 1`] = `
+[
+  {
+    "alignItems": "center",
+    "borderBottomLeftRadius": 8,
+    "borderBottomRightRadius": 8,
+    "borderTopLeftRadius": 8,
+    "borderTopRightRadius": 8,
+    "justifyContent": "center",
+    "marginBottom": 40,
+    "marginTop": 12,
+    "paddingBottom": 20,
+    "paddingLeft": 16,
+    "paddingRight": 16,
+    "paddingTop": 20,
+    "position": "relative",
+  },
+  {
+    "backgroundColor": "#EFF0F0",
+  },
+]
+`;
+
 exports[`CardStatistics Component should render correctly with percentage < 75: arrow-icon-prop-outDiet 1`] = `"#BF3B44"`;
 
 exports[`CardStatistics Component should render correctly with percentage < 75: btn-style-outDiet 1`] = `
 [
   {
+    "alignItems": "center",
     "borderBottomLeftRadius": 8,
     "borderBottomRightRadius": 8,
     "borderTopLeftRadius": 8,
     "borderTopRightRadius": 8,
+    "justifyContent": "center",
+    "marginBottom": 40,
+    "marginTop": 12,
     "paddingBottom": 20,
     "paddingLeft": 16,
     "paddingRight": 16,
@@ -26,10 +53,14 @@ exports[`CardStatistics Component should render correctly with percentage >= 75:
 exports[`CardStatistics Component should render correctly with percentage >= 75: btn-style 1`] = `
 [
   {
+    "alignItems": "center",
     "borderBottomLeftRadius": 8,
     "borderBottomRightRadius": 8,
     "borderTopLeftRadius": 8,
     "borderTopRightRadius": 8,
+    "justifyContent": "center",
+    "marginBottom": 40,
+    "marginTop": 12,
     "paddingBottom": 20,
     "paddingLeft": 16,
     "paddingRight": 16,
@@ -40,14 +71,6 @@ exports[`CardStatistics Component should render correctly with percentage >= 75:
     "backgroundColor": "#E5F0DB",
   },
 ]
-`;
-
-exports[`CardStatistics Component should render correctly with percentage >= 75: content-animated 1`] = `
-{
-  "alignItems": "center",
-  "justifyContent": "center",
-  "opacity": 1,
-}
 `;
 
 exports[`CardStatistics Component should render correctly with percentage >= 75: heading-style 1`] = `
