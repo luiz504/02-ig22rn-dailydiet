@@ -1,9 +1,17 @@
 import { endOfDay, subMonths } from 'date-fns'
 import { z } from 'zod'
 
-import { getStoredMealsByDay, setStoredMeals } from '../utils/storage_meal'
+import {
+  deleteStoredMealCollection,
+  getStoredMealsByDay,
+  setStoredMeals,
+} from '../utils/storage_meal'
 import { AppError } from '~/utils/AppError'
 import { Meal } from '~/models/Meal'
+
+import { deleteDayRegister } from '../days/deleteDayRegister'
+import { storageDateKeyFormat } from '../utils/storage_keys'
+import { createDayRegister } from '../days/createDayRegister'
 
 const identifierSchema = z.object({
   id: z.string({ required_error: 'Meal Id is required' }).nonempty(),
@@ -49,8 +57,14 @@ export async function updateMeal(
     )
   }
 
-  if (!updatedFields.date) {
-    delete updatedFields.date
+  const hasChangedDateGroup = updatedFields.date
+    ? groupName !== storageDateKeyFormat(updatedFields.date)
+    : false
+
+  if (!hasChangedDateGroup) {
+    if (!updatedFields.date) {
+      delete updatedFields.date
+    }
     const updatedMeal = { ...storedMeal, ...(updatedFields as Partial<Meal>) }
 
     const updatedMeals = storedMealsByDay.meals.map((m) =>
@@ -59,7 +73,42 @@ export async function updateMeal(
 
     await setStoredMeals(groupName, updatedMeals)
   } else {
-    // const hasMoreMealsInThisGroup = storedMealsByDay.meals.length > 1
-    // coming soon first do the deletes
+    const updatedMeal = { ...storedMeal, ...(updatedFields as Partial<Meal>) }
+    const newDate = updatedFields.date as Date
+    const newGroupName = storageDateKeyFormat(newDate)
+
+    const storedMealsCollectionAtNewDate = await getStoredMealsByDay(
+      newGroupName,
+    )
+
+    const filteredPreviousMeals = storedMealsByDay.meals.filter(
+      (m) => m.id !== id,
+    )
+
+    const shouldCreateNewMealCollection = !storedMealsCollectionAtNewDate
+    const shouldDeletePreviousMealCollection = !filteredPreviousMeals.length
+
+    await Promise.all([
+      //* Create Day Register for new Collection and create new MealCollection
+      shouldCreateNewMealCollection && createDayRegister(newDate),
+      shouldCreateNewMealCollection &&
+        setStoredMeals(newGroupName, [updatedMeal]),
+
+      //! Should update existing target Meal Collection
+      !shouldCreateNewMealCollection &&
+        setStoredMeals(newGroupName, [
+          ...storedMealsCollectionAtNewDate.meals,
+          updatedMeal,
+        ]),
+
+      //* Updated Previous Collection
+      !shouldDeletePreviousMealCollection &&
+        setStoredMeals(groupName, filteredPreviousMeals),
+
+      //! Delete Previous Meal Collection
+      shouldDeletePreviousMealCollection &&
+        deleteStoredMealCollection(groupName),
+      shouldDeletePreviousMealCollection && deleteDayRegister(groupName),
+    ])
   }
 }
