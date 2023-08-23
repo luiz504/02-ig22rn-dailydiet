@@ -114,7 +114,7 @@ describe('Meal Screen', () => {
     expect(screen.queryByTestId(alertDeleteID)).toBeNull()
   })
 
-  it('should navigate to Edit Meal screen correctly', () => {
+  it('should navigate to Edit Meal screen correctly', async () => {
     const navigate = jest.fn()
 
     jest.mocked(useNavigation).mockReturnValue({ navigate })
@@ -129,6 +129,7 @@ describe('Meal Screen', () => {
     expect(navigate).toHaveBeenCalledTimes(1)
     expect(navigate).toHaveBeenCalledWith('edit-meal', { meal: mockMealInDiet })
   })
+
   it('should navigate to Edit Home screen correctly', () => {
     const navigate = jest.fn()
 
@@ -161,12 +162,21 @@ describe('Meal Screen', () => {
 
     // Act open modal
     fireEvent.press(screen.getByTestId(btnDeleteID))
+
+    await waitFor(async () =>
+      expect(await screen.findByTestId('alert-delete-modal')).toBeVisible(),
+    )
+
     fireEvent.press(screen.getByTestId('alert-delete-btn-confirm'))
 
-    await waitFor(() => expect(navigate).toBeCalledWith('home'))
-    expect(deleteMealSpy).toBeCalledWith({
-      groupName,
-      mealId: mockMealInDiet.id,
+    await waitFor(() => {
+      expect(navigate).toBeCalledWith('home')
+    })
+    await waitFor(() => {
+      expect(deleteMealSpy).toBeCalledWith({
+        groupName,
+        mealId: mockMealInDiet.id,
+      })
     })
   })
 
@@ -187,7 +197,18 @@ describe('Meal Screen', () => {
 
     // Act open modal
     fireEvent.press(screen.getByTestId(btnDeleteID))
+
+    await waitFor(async () =>
+      expect(await screen.findByTestId('alert-delete-modal')).toBeVisible(),
+    )
+
     fireEvent.press(screen.getByTestId('alert-delete-btn-confirm'))
+
+    await waitFor(() =>
+      expect(
+        screen.getByTestId(btnDeleteID).props.accessibilityState.disabled,
+      ).toBe(false),
+    )
 
     await waitFor(() =>
       expect(alertSpy).toBeCalledWith(expect.any(String), expect.any(String)),
