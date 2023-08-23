@@ -1,14 +1,14 @@
 import { Meal } from '~/models/Meal'
 import { Statistics } from '~/models/Statistics'
 
-export function processMealStatistics(entries: { data: Meal[] }[]) {
+export function processMealStatistics(entries: { meals: Meal[] }[]) {
   if (!entries.length) return null
 
   try {
     const { bestInDietSequence, inDietEntries, outDietEntries, totalEntries } =
       entries.reduce(
         (accumulator, cur) => {
-          cur.data.forEach((meal) => {
+          cur.meals.forEach((meal) => {
             if (meal.inDiet) {
               accumulator.inDietEntries += 1
               accumulator.currentSequence += 1

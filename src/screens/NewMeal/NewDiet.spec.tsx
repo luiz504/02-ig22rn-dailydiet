@@ -278,14 +278,14 @@ describe('NewMeal Screen', () => {
     )
   })
 
-  it('should trigger createMeal function when success navigate to home screen', async () => {
+  it('should trigger createMeal function when success navigate to success screen', async () => {
     const todayDayString = '2023/08/15'
     jest
       .useFakeTimers()
       .setSystemTime(new Date(todayDayString).setHours(12, 0, 0, 0))
     const createMealSpy = jest.spyOn(CreateMealModule, 'createMeal')
-
-    const { navigate } = useNavigationMock()
+    const dispatch = jest.fn()
+    jest.mocked(useNavigation).mockReturnValue({ dispatch })
     render(<NewMeal />)
 
     // Act Fill Form
@@ -313,9 +313,12 @@ describe('NewMeal Screen', () => {
     fireEvent.press(screen.getByTestId(testIDs.btnSubmitID))
 
     await waitFor(() => {
-      expect(navigate).toBeCalledTimes(1)
+      expect(dispatch).toBeCalledTimes(1)
     })
-    expect(navigate).toBeCalledWith('home')
+    expect(dispatch).toBeCalledWith({
+      payload: { name: 'success-meal-creation', params: { inDiet: true } },
+      type: 'REPLACE',
+    })
 
     expect(createMealSpy).toBeCalledWith({
       date: new Date('2023-08-14T12:00:00.000Z'),

@@ -17,6 +17,9 @@ export declare global {
         meal: Meal,
         groupName: string
       }
+      'success-meal-creation': {
+        inDiet: boolean
+      }
     }
   }
 }

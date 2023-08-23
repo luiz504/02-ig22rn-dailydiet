@@ -3,7 +3,7 @@ import { processMealStatistics } from './processMealsStatistics'
 describe('processMealsStatistics function', () => {
   const mealsCollection = [
     {
-      data: [
+      meals: [
         {
           id: 'meal1',
           name: 'Lunch',
@@ -21,7 +21,7 @@ describe('processMealsStatistics function', () => {
       ],
     },
     {
-      data: [
+      meals: [
         {
           id: 'meal1',
           name: 'Lunch',
@@ -56,7 +56,7 @@ describe('processMealsStatistics function', () => {
     expect(statistics).toBeNull()
   })
   it('should return null if some error happen in the processing', () => {
-    const statistics = processMealStatistics([{ data: [null] as any }])
+    const statistics = processMealStatistics([{ meals: [null] as any }])
 
     expect(statistics).toBeNull()
   })
