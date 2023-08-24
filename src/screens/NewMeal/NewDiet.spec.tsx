@@ -21,6 +21,7 @@ import DateTimePicker from 'react-native-modal-datetime-picker'
 import RHF, { useForm } from 'react-hook-form'
 
 import * as CreateMealModule from '~/storage/meals/createMeal'
+import * as StatisticsModule from '~/storage/statistics/getStatistics'
 
 jest.mock('@react-navigation/native', () => {
   return {
@@ -327,7 +328,56 @@ describe('NewMeal Screen', () => {
       name: 'Fake Meal Name',
     })
   })
+  it('should navigate to home if some error occur with getStatists after meal Creation success', async () => {
+    const todayDayString = '2023/08/15'
+    jest
+      .useFakeTimers()
+      .setSystemTime(new Date(todayDayString).setHours(12, 0, 0, 0))
+    jest.spyOn(StatisticsModule, 'getStatistics').mockResolvedValue(null)
+    const createMealSpy = jest.spyOn(CreateMealModule, 'createMeal')
+    const dispatch = jest.fn()
+    jest.mocked(useNavigation).mockReturnValue({ dispatch })
+    render(<NewMeal />)
 
+    // Act Fill Form
+
+    fireEvent.changeText(
+      screen.getByTestId(testIDs.inputNameID),
+      'Fake Meal Name',
+    )
+
+    fireEvent.changeText(
+      screen.getByTestId(testIDs.inputDescriptionID),
+      'Fake Meal Description',
+    )
+
+    fireEvent.press(screen.getByTestId(testIDs.btnDateID))
+
+    fireEvent(
+      screen.UNSAFE_getByType(DateTimePicker),
+      'onConfirm',
+      subDays(new Date(), 1),
+    )
+
+    fireEvent.press(screen.getByTestId(testIDs.btnInDietID))
+
+    fireEvent.press(screen.getByTestId(testIDs.btnSubmitID))
+
+    await waitFor(() => {
+      expect(dispatch).toBeCalledTimes(1)
+    })
+    expect(dispatch).toBeCalledWith({
+      payload: { name: 'home', params: undefined },
+      type: 'REPLACE',
+    })
+
+    expect(createMealSpy).toBeCalledWith({
+      date: new Date('2023-08-14T12:00:00.000Z'),
+      description: 'Fake Meal Description',
+      inDiet: true,
+      name: 'Fake Meal Name',
+    })
+  })
   it('should trigger a Alert message when some generic error occurs on handleCreateMeal', async () => {
     const todayDayString = '2023/08/15'
     jest

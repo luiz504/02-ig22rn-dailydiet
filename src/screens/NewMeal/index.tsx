@@ -8,8 +8,10 @@ import DateTimePicker from 'react-native-modal-datetime-picker'
 import { endOfDay, subMonths } from 'date-fns'
 
 import { createMeal } from '~/storage/meals/createMeal'
+import { getStatistics } from '~/storage/statistics/getStatistics'
 
 import { formatDate, formatTime } from '~/utils/dateTimeFormatters'
+import { isInDiet } from '~/utils/processMealsStatistics'
 
 import { HeaderShort } from '~/components/HeaderShort'
 import { Theme } from '~/components/Theme'
@@ -19,7 +21,6 @@ import { Form } from '~/components/Form'
 import { Select } from '~/components/Select'
 import { Button } from '~/components/Button'
 import { DatePicker } from '~/components/DatePicker'
-import { getStatistics } from '~/storage/statistics/getStatistics'
 
 const newMealSchema = z.object({
   name: z.string().nonempty({ message: 'Meal name required.' }),
@@ -73,13 +74,18 @@ export const NewMeal: FC = () => {
   const handleCreateMeal = async (data: NewMealType) => {
     try {
       await createMeal(data)
+
       const statistics = await getStatistics()
 
-      navigator.dispatch(
-        StackActions.replace('success-meal-creation', {
-          inDiet: (statistics?.inDietPercentage || 0) > 75,
-        }),
-      )
+      if (statistics) {
+        navigator.dispatch(
+          StackActions.replace('success-meal-creation', {
+            inDiet: isInDiet(statistics.inDietPercentage),
+          }),
+        )
+      } else {
+        navigator.dispatch(StackActions.replace('home'))
+      }
     } catch (err) {
       Alert.alert('Create Meal Error', 'Something went wrong :/, try again.')
     }

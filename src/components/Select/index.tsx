@@ -10,7 +10,7 @@ interface ButtonProps extends TouchableHighlightProps {
   children: ReactNode
 }
 export const Button: FC<ButtonProps> = ({
-  isSelected = false,
+  isSelected,
   variant,
   children,
   ...rest

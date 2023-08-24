@@ -335,7 +335,7 @@ describe('EditMeal Screen', () => {
     )
   })
 
-  it('should trigger createMeal function when success navigate to home screen', async () => {
+  it('should trigger updateMeal, onsuccess navigate to home screen', async () => {
     // Prepare
     await setStoredMeals(initialMeal.groupName, [initialMeal.meal])
 
@@ -364,6 +364,40 @@ describe('EditMeal Screen', () => {
       { id: initialMeal.meal.id, groupName: initialMeal.groupName },
       {
         name: newName,
+      },
+    )
+  })
+
+  it('should trigger updateMeal passing the right date format when changed', async () => {
+    // Prepare
+    await setStoredMeals(initialMeal.groupName, [initialMeal.meal])
+
+    const todayDayString = '2023/08/15'
+    jest
+      .useFakeTimers()
+      .setSystemTime(new Date(todayDayString).setHours(12, 0, 0, 0))
+    const updateMealSpy = jest.spyOn(UpdateMealModule, 'updateMeal')
+
+    const { navigate } = useNavigationMock()
+    render(<EditMeal />)
+
+    // Act
+
+    const newDate = subDays(new Date(todayDayString), 1)
+    fireEvent(screen.UNSAFE_getByType(DateTimePicker), 'onConfirm', newDate)
+
+    fireEvent.press(screen.getByTestId(testIDs.btnSubmitID))
+
+    await waitFor(() => expect(navigate).toBeCalledTimes(1))
+    expect(navigate).toBeCalledWith('meal', {
+      meal: { ...initialMeal.meal, date: newDate.toISOString() },
+      groupName: initialMeal.groupName,
+    })
+
+    expect(updateMealSpy).toBeCalledWith(
+      { id: initialMeal.meal.id, groupName: initialMeal.groupName },
+      {
+        date: new Date(newDate),
       },
     )
   })

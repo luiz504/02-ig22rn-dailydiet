@@ -61,7 +61,7 @@ export const EditMeal: FC = () => {
     resolver: zodResolver(editMealSchema),
     defaultValues: {
       name: meal.name,
-      description: meal.description || '',
+      description: meal.description,
       date: new Date(meal.date),
       inDiet: meal.inDiet,
     },

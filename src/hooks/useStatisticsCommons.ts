@@ -1,7 +1,10 @@
 import { useMemo } from 'react'
 import { useTheme } from 'styled-components/native'
-import { Statistics } from '~/models/Statistics'
+
 import { percentageFormatter } from '~/utils/percentageFormatter'
+import { isInDiet } from '~/utils/processMealsStatistics'
+
+import { Statistics } from '~/models/Statistics'
 
 export function useStatisticsCommons(statistics: Statistics | null) {
   const _theme = useTheme()
@@ -15,7 +18,7 @@ export function useStatisticsCommons(statistics: Statistics | null) {
 
     const { inDietPercentage } = statistics
 
-    const goodDiet = inDietPercentage >= 75
+    const goodDiet = isInDiet(inDietPercentage)
 
     return {
       theme: {
