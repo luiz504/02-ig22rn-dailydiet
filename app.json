@@ -4,10 +4,10 @@
     "slug": "dailydiet",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/daily-diet-icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/daily-diet-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#FAFAFA"
     },
@@ -17,10 +17,11 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/daily-diet-adaptive-icon.png",
         "backgroundColor": "#FAFAFA"
       },
-      "softwareKeyboardLayoutMode": "pan"
+      "softwareKeyboardLayoutMode": "pan",
+      "package": "com.luiz504.dailydiet"
     },
     "web": {
       "favicon": "./assets/favicon.png"

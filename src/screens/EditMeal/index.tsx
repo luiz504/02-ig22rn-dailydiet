@@ -173,11 +173,10 @@ export const EditMeal: FC = () => {
                     mode={isOpenDatePicker}
                     onCancel={handleDateTimePickerModal}
                     onConfirm={(d) => {
-                      onChange(d)
                       handleDateTimePickerModal()
+                      onChange(d)
                     }}
                     minimumDate={subMonths(new Date(), 1)}
-                    // maximumDate={new Date()}
                     date={dateTime}
                     testID="date-time-picker"
                   />
