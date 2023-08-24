@@ -4,7 +4,7 @@
     "slug": "dailydiet",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/daily-diet-icon.png",
+    "icon": "./assets/daily-diet-icon-400.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/daily-diet-splash.png",
@@ -17,7 +17,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/daily-diet-adaptive-icon.png",
+        "foregroundImage": "./assets/daily-diet-adaptive-icon-400.png",
         "backgroundColor": "#FAFAFA"
       },
       "softwareKeyboardLayoutMode": "pan",
@@ -30,6 +30,11 @@
     "experiments": {
       "tsconfigPaths": true
     },
-    "plugins": ["expo-localization"]
+    "plugins": ["expo-localization"],
+    "extra": {
+      "eas": {
+        "projectId": "122338f9-816c-497c-8211-d61827b4aa2e"
+      }
+    }
   }
 }
