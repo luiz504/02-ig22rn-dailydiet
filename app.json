@@ -4,7 +4,6 @@
     "slug": "dailydiet",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/daily-diet-icon-400.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/daily-diet-splash.png",
@@ -17,7 +16,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/daily-diet-adaptive-icon-400.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FAFAFA"
       },
       "softwareKeyboardLayoutMode": "pan",
