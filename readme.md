@@ -15,7 +15,7 @@ For further details about the development process, please refer to the [Dev Note
 
 ## Commands
 
-Run with Expo GO.
+To run the project using Expo Go:
 
 ```bash
 npm run start
@@ -23,13 +23,29 @@ npm run start
 
 #
 
-Need access to native code?
+If you need access to native code and want to run the prebuilt version, use the following command:
 
 ```bash
 npx expo run:android
 ```
 
-it will build and install to the connected device via ADB.
+This will build and install the application on the connected device via ADB.
+
+#
+
+For a preview build to run the app standalone:
+
+```bash
+eas build --platform android --profile preview-apk --local
+```
+
+Then, install the preview build using ADB:
+
+```bash
+adb install <buildname.apk>
+```
+
+**Note**: If you have the prebuilt version already installed, you must uninstall it to enable adb to install the standalone version.
 
 #
 
