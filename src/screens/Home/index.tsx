@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo, useState } from 'react'
+import { FC, useCallback, useState } from 'react'
 import { ActivityIndicator, SectionList } from 'react-native'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { useTheme } from 'styled-components/native'
@@ -20,6 +20,7 @@ import { Meal } from '~/models/Meal'
 
 import { processMealStatistics } from '~/utils/processMealsStatistics'
 import { MealsSectionList } from './types'
+import { Statistics } from '~/models/Statistics'
 
 export const Home: FC = () => {
   const navigator = useNavigation()
@@ -29,6 +30,7 @@ export const Home: FC = () => {
     navigator.navigate('meal', { meal, groupName })
   }
   const [isLoading, setIsLoading] = useState(true)
+  const [statistics, setStatistics] = useState<Statistics | null>(null)
   const [meals, setMeals] = useState<MealsSectionList>([])
 
   useFocusEffect(
@@ -50,6 +52,7 @@ export const Home: FC = () => {
               )
 
               setMeals(mealsByDayFormatted)
+              setStatistics(processMealStatistics(mealsByDay))
             }
           } else {
             setMeals([])
@@ -67,8 +70,6 @@ export const Home: FC = () => {
       }
     }, []),
   )
-
-  const statistics = useMemo(() => processMealStatistics(meals), [meals])
 
   return (
     <Theme

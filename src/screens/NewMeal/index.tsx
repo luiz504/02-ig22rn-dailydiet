@@ -1,6 +1,6 @@
 import { FC, useMemo, useState } from 'react'
 import { Alert, Keyboard, TouchableWithoutFeedback } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import { StackActions, useNavigation } from '@react-navigation/native'
 import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -19,6 +19,7 @@ import { Form } from '~/components/Form'
 import { Select } from '~/components/Select'
 import { Button } from '~/components/Button'
 import { DatePicker } from '~/components/DatePicker'
+import { getStatistics } from '~/storage/statistics/getStatistics'
 
 const newMealSchema = z.object({
   name: z.string().nonempty({ message: 'Meal name required.' }),
@@ -72,7 +73,13 @@ export const NewMeal: FC = () => {
   const handleCreateMeal = async (data: NewMealType) => {
     try {
       await createMeal(data)
-      navigator.navigate('home')
+      const statistics = await getStatistics()
+
+      navigator.dispatch(
+        StackActions.replace('success-meal-creation', {
+          inDiet: (statistics?.inDietPercentage || 0) > 75,
+        }),
+      )
     } catch (err) {
       Alert.alert('Create Meal Error', 'Something went wrong :/, try again.')
     }
