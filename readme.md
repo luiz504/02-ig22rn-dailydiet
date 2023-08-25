@@ -73,7 +73,7 @@ adb install <filename>
 ## Dev Notes
 
 <details>
-  <summary>Animation between Components in Different Routes</summary>
+  <summary>Animation between Components in different routes</summary>
 
 If you view the [Layout](<https://www.figma.com/file/DOo34mE1V7owHxfnVDdHOu/Daily-Diet-%E2%80%A2-Desafio-React-Native-(Community)?type=design&node-id=407%3A97&mode=dev>) in play mode and click on the statistics card on the HomePage, you'll notice an animation where the card smoothly blends with the header of the Statistics screen.
 
