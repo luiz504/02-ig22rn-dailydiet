@@ -1,3 +1,4 @@
+import { IN_DIET_THRESHOLD } from '~/constants/diet'
 import { Meal } from '~/models/Meal'
 import { Statistics } from '~/models/Statistics'
 
@@ -46,4 +47,8 @@ export function processMealStatistics(entries: { meals: Meal[] }[]) {
   } catch (err) {
     return null
   }
+}
+
+export function isInDiet(leftOperand: number) {
+  return leftOperand >= IN_DIET_THRESHOLD
 }

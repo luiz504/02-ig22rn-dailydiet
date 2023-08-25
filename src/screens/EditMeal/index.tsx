@@ -61,7 +61,7 @@ export const EditMeal: FC = () => {
     resolver: zodResolver(editMealSchema),
     defaultValues: {
       name: meal.name,
-      description: meal.description || '',
+      description: meal.description,
       date: new Date(meal.date),
       inDiet: meal.inDiet,
     },
@@ -173,11 +173,10 @@ export const EditMeal: FC = () => {
                     mode={isOpenDatePicker}
                     onCancel={handleDateTimePickerModal}
                     onConfirm={(d) => {
-                      onChange(d)
                       handleDateTimePickerModal()
+                      onChange(d)
                     }}
                     minimumDate={subMonths(new Date(), 1)}
-                    // maximumDate={new Date()}
                     date={dateTime}
                     testID="date-time-picker"
                   />

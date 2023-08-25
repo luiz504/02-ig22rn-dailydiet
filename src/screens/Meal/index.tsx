@@ -31,15 +31,13 @@ export const MealScreen: FC = () => {
   const themeVariant = meal.inDiet ? 'green' : 'red'
 
   const dietCardLabel = meal.inDiet ? 'within the diet' : 'outside the diet'
+
   const dotColor = meal.inDiet
     ? theme.colors['green-900']
     : theme.colors['red-900']
 
   const dateAndTimeString = formatDateAndTime(meal.date)
 
-  const handleEditMeal = () => {
-    navigator.navigate('edit-meal', { meal, groupName })
-  }
   const [isDeleting, setIsDeleting] = useState(false)
   const handleDeleteMeal = async () => {
     try {
@@ -106,7 +104,9 @@ export const MealScreen: FC = () => {
             <Button
               icon="pen"
               label="Edit Meal"
-              onPress={handleEditMeal}
+              onPress={() =>
+                navigator.navigate('edit-meal', { meal, groupName })
+              }
               disabled={isDeleting}
               testID="btn-edit"
             />

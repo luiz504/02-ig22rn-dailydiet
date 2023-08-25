@@ -1,6 +1,6 @@
 import { Alert } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { act, fireEvent, render, screen, waitFor } from '~/utils/test-utils'
+import { fireEvent, render, screen, waitFor } from '~/utils/test-utils'
 import { MealScreen } from '.'
 import { Meal } from '~/models/Meal'
 
@@ -166,13 +166,13 @@ describe('Meal Screen', () => {
     await waitFor(async () =>
       expect(await screen.findByTestId('alert-delete-modal')).toBeVisible(),
     )
-    // eslint-disable-next-line
-    await act(async () => {
-      fireEvent.press(screen.getByTestId('alert-delete-btn-confirm'))
 
-      await waitFor(() => {
-        expect(navigate).toBeCalledWith('home')
-      })
+    fireEvent.press(screen.getByTestId('alert-delete-btn-confirm'))
+
+    await waitFor(() => {
+      expect(navigate).toBeCalledWith('home')
+    })
+    await waitFor(() => {
       expect(deleteMealSpy).toBeCalledWith({
         groupName,
         mealId: mockMealInDiet.id,
@@ -201,17 +201,16 @@ describe('Meal Screen', () => {
     await waitFor(async () =>
       expect(await screen.findByTestId('alert-delete-modal')).toBeVisible(),
     )
-    // eslint-disable-next-line
-    await act(async () => {
-      fireEvent.press(screen.getByTestId('alert-delete-btn-confirm'))
 
-      await waitFor(() => {
-        expect(
-          screen.getByTestId(btnDeleteID).props.accessibilityState.disabled,
-        ).toBe(false)
-      })
+    fireEvent.press(screen.getByTestId('alert-delete-btn-confirm'))
+
+    await waitFor(() => {
+      expect(navigate).not.toBeCalledTimes(1)
+      // eslint-disable-next-line testing-library/no-wait-for-multiple-assertions
+      expect(navigate).not.toBeCalledWith('home')
+    })
+    await waitFor(() => {
       expect(alertSpy).toBeCalledWith(expect.any(String), expect.any(String))
-      expect(navigate).not.toBeCalled()
     })
   })
 })

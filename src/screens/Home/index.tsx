@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components/native'
 
 import { HeaderUserLogo } from '~/screens/Home/components/HeaderUserLogo'
 
-import { getStoredDays } from '~/storage/utils/storage_days'
+import { getDaysRegisters } from '~/storage/days/getDayRegisters'
 import { getMealsByDays } from '~/storage/meals/getMealsByDays'
 
 import { CardStatistics } from './components/CardStatistics'
@@ -35,39 +35,31 @@ export const Home: FC = () => {
 
   useFocusEffect(
     useCallback(() => {
-      let isActive = true
-
       const loadMeals = async () => {
         try {
           setIsLoading(true)
 
-          const days = await getStoredDays()
+          const days = await getDaysRegisters()
 
           if (days?.length) {
             const mealsByDay = await getMealsByDays(days)
 
-            if (isActive) {
-              const mealsByDayFormatted: MealsSectionList = mealsByDay.map(
-                (entry) => ({ title: entry.day, data: entry.meals }),
-              )
+            const mealsByDayFormatted: MealsSectionList = mealsByDay.map(
+              (entry) => ({ title: entry.day, data: entry.meals }),
+            )
 
-              setMeals(mealsByDayFormatted)
-              setStatistics(processMealStatistics(mealsByDay))
-            }
+            setMeals(mealsByDayFormatted)
+            setStatistics(processMealStatistics(mealsByDay))
           } else {
             setMeals([])
           }
-          isActive && setIsLoading(false)
+          setIsLoading(false)
         } catch (err) {
           setIsLoading(false)
         }
       }
 
       loadMeals()
-
-      return () => {
-        isActive = false
-      }
     }, []),
   )
 

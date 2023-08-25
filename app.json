@@ -4,10 +4,9 @@
     "slug": "dailydiet",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/daily-diet-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#FAFAFA"
     },
@@ -20,7 +19,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FAFAFA"
       },
-      "softwareKeyboardLayoutMode": "pan"
+      "softwareKeyboardLayoutMode": "pan",
+      "package": "com.luiz504.dailydiet"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -29,6 +29,11 @@
     "experiments": {
       "tsconfigPaths": true
     },
-    "plugins": ["expo-localization"]
+    "plugins": ["expo-localization"],
+    "extra": {
+      "eas": {
+        "projectId": "122338f9-816c-497c-8211-d61827b4aa2e"
+      }
+    }
   }
 }
