@@ -157,7 +157,7 @@ export const NewMeal: FC = () => {
                       onChange(d)
                     }}
                     minimumDate={subMonths(new Date(), 1)}
-                    // maximumDate={new Date()}
+                    maximumDate={new Date()}
                     date={dateTime}
                     testID="date-time-picker"
                   />
