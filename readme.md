@@ -3,13 +3,19 @@
 ![lines](__badges__/badge-lines.svg)
 ![statements](__badges__/badge-statements.svg)
 
-## Introduction
-
+# Daily Diet
 Welcome to the Daily Diet tracker, a simple project crafted both as a learning endeavor and a portfolio showcase.
+
+## Introduction
 
 This project implements basic CRUD (Create, Read, Update, Delete) operations for meals, organized by date, following the design provided in this [Layout](<https://www.figma.com/file/DOo34mE1V7owHxfnVDdHOu/Daily-Diet-%E2%80%A2-Desafio-React-Native-(Community)?type=design&node-id=407%3A97&mode=dev>) and [Challenge Instructions](https://efficient-sloth-d85.notion.site/Desafio-02-Daily-Diet-98b7d85ec7e9428aa0f9f3bceed4380f).
 
 For further details about the development process, please refer to the [Dev Notes section](#dev-notes).
+
+
+---
+
+[Preview](https://github.com/luiz504/02-ig22rn-dailydiet/assets/53402833/07a5807e-6f06-4990-a63a-6cb2d8bb73e4)
 
 ---
 
