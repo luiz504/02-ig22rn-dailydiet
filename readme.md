@@ -55,8 +55,8 @@ adb install <buildname.apk>
 
 #
 
-To Build an APK Preview version locally.
-[EAS](https://docs.expo.dev/eas-insights/introduction/#installation) required
+To Build an APK Preview version locally
+[EAS](https://docs.expo.dev/eas-insights/introduction/#installation) is required:
 
 ```bash
 eas build --platform android --profile preview-apk --local
